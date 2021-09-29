@@ -1,5 +1,5 @@
 {
-  "greeting-block-name": {
-    "component": "Greeting"
+  "example-component": {
+    "component": "ExampleComponent"
   }
 }
