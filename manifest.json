@@ -1,9 +1,9 @@
 {
-  "vendor": "CHANGE_ME",
-  "name": "CHANGE_ME",
+  "vendor": "experimentality",
+  "name": "components2",
   "version": "0.1.0",
-  "title": "CHANGE_ME",
-  "description": "CHANGE_ME",
+  "title": "BeautyHolics Components",
+  "description": "Components for the BeautyHolics store",
   "builders": {
     "docs": "0.x",
     "react": "3.x",
@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "vtex.css-handles": "0.x",
-    "vtex.render-runtime": "8.x"
+    "vtex.render-runtime": "8.x",
+    "vtex.rich-text": "0.x",
+    "vtex.slider-layout": "0.x"
   },
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "policies": [],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
