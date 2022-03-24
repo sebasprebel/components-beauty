@@ -17,7 +17,6 @@ const CSS_HANDLES = [
 const InfiniteSlide = ({ text ="LA MAGIA DE SER TU MISM@   ♥", textColor="#FFF", backgroundColor= "#FFA9BE" }: InfiniteSlideProps) => {
   const handles = useCssHandles(CSS_HANDLES)
   const {infiniteSlide__container,infiniteSlide__text, infiniteSlide__slide } = handles
-  console.log(text, textColor, backgroundColor, infiniteSlide__container, infiniteSlide__text)
   return (
    <div className= {`${infiniteSlide__container}`} style={{backgroundColor:`${backgroundColor}`}}>
      <div className= {`${infiniteSlide__slide}`}>
