@@ -14,5 +14,11 @@
   
   "responsive-image": {
     "component": "ResponsiveImage"
+  },
+  "infinite-slide":{
+    "component": "InfiniteSlide"
+  },
+  "copy-info":{
+    "component": "Copyright"
   }
 }
