@@ -20,5 +20,9 @@
   },
   "copy-info":{
     "component": "Copyright"
+  },
+  "drop-down-container":{
+    "component": "DropDownContainer",
+    "composition": "children"
   }
 }
