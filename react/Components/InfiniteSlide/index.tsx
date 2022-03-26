@@ -26,6 +26,8 @@ const InfiniteSlide = ({ text ="LA MAGIA DE SER TU MISM@   ♥", textColor="#FFF
       <p className= {`${infiniteSlide__text}`} style={{color:`${textColor}`}}>{text}</p>
       <p className= {`${infiniteSlide__text}`} style={{color:`${textColor}`}}>{text}</p>
       <p className= {`${infiniteSlide__text}`} style={{color:`${textColor}`}}>{text}</p>
+      <p className= {`${infiniteSlide__text}`} style={{color:`${textColor}`}}>{text}</p>
+      <p className= {`${infiniteSlide__text}`} style={{color:`${textColor}`}}>{text}</p>
      </div>
    </div>
   )
