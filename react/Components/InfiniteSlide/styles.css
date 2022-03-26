@@ -13,6 +13,9 @@
 .infiniteSlide__text{
   white-space: nowrap;
   width: fit-content;
+  min-width: 225px;
+  font-weight: bold;
+  letter-spacing: .5px;
   display: flex;
   position: relative;
   transform: translateX(-170%);
