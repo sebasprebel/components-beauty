@@ -1,0 +1,23 @@
+query{
+  categories(treeLevel:3){
+    id,
+    name,
+    href,
+    children{
+      id,
+      name,
+      href,
+      children{
+        id,
+        name,
+        href,
+        children{
+          id,
+          name,
+          href
+        }
+      }
+    }
+  }
+}
+

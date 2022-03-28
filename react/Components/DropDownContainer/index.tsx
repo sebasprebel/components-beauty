@@ -29,7 +29,7 @@ const DropDownContainer = ({
   }
 
   const comparison = numberOfWordsContent < numberOfWordsBase
-  console.log((comparison && showMore) )
+
   return (
     <div>
     <div className={`${dropDown__container}`} style={{height:`${comparison?"auto":showMore?"auto":"50px"}`}}>
