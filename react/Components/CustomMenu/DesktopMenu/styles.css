@@ -13,13 +13,16 @@ li{
 }
 a{
   text-decoration: none;
-  color: #000;
 }
 
 .desktop-menu__item{
   cursor: pointer;
   padding: .5rem .3rem;
   position: relative;
+}
+.desktop-menu__item a,
+.desktop-submenu__content--list a{
+  color: #000000;
 }
 
 .desktop-menu__item:hover::after{

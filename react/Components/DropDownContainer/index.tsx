@@ -32,7 +32,7 @@ const DropDownContainer = ({
 
   return (
     <div>
-    <div className={`${dropDown__container}`} style={{height:`${comparison?"auto":showMore?"auto":"50px"}`}}>
+    <div className={`${dropDown__container}`} style={{height:`${comparison?"auto":showMore?"auto":"80px"}`}}>
         <h3 className={`${dropDown__title}`}> Conoce nuestro maquillaje</h3>
         <p className={`${dropDown__content}`}>
           {text}
