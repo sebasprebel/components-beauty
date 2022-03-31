@@ -17,7 +17,6 @@ const CSS_HANDLES = [
 interface IcategorySelected {
   categoryNumber: number;
   isSomeCategorySelected: boolean;
-
 }
 
 const DesktopMenu = () => {
@@ -46,7 +45,7 @@ const DesktopMenu = () => {
   }
 
   useEffect(() => {
-    setDepartments(data.categories[0]?.children)
+    setDepartments(data?.categories[0]?.children)
   }, [data])
 
   useEffect(() => {
@@ -62,6 +61,7 @@ const DesktopMenu = () => {
             return (
 
               <MenuItem
+                key={id}
                 name={name}
                 href={href}
                 id={id}
@@ -94,13 +94,14 @@ const DesktopMenu = () => {
   )
 }
 
+//Falta organizar el schema
 DesktopMenu.schema = {
   title: 'Menú custom',
   type: 'object',
   properties: {
     text: {
       title: 'Texto',
-      description: 'Texto que aparecerá en el copyright',
+      description: '',
       type: 'string',
     }
   },

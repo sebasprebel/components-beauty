@@ -31,12 +31,12 @@ const MenuItem = ({ name, id, handleClick, isLinkItem, href, isHighlight}: MenuI
 }
 
 MenuItem.schema = {
-  title: 'Copyright custom',
+  title: 'Menú ítem',
   type: 'object',
   properties: {
     text: {
       title: 'Texto',
-      description: 'Texto que aparecerá en el copyright',
+      description: '',
       type: 'string',
     }
   },

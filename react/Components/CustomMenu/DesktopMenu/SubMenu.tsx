@@ -34,7 +34,7 @@ const SubMenu = ({ subMenuToShow, name, href, handleLeave}:SubCategoriesProps) =
               <ul>
                 {sliceArray(orderAlphabetic(children),5)?.map(({name, href}:submenuItemsProps)=>{
                   return(
-                    <li className={`${handles["desktop-submenu__subcategory--element"]}`}>
+                    <li  key={href} className={`${handles["desktop-submenu__subcategory--element"]}`}>
                       <Link to={href}>{name}</Link>
                     </li>
                   )
@@ -54,12 +54,12 @@ const SubMenu = ({ subMenuToShow, name, href, handleLeave}:SubCategoriesProps) =
 }
 
 SubMenu.schema = {
-  title: 'Copyright custom',
+  title: 'Submenú',
   type: 'object',
   properties: {
     text: {
       title: 'Texto',
-      description: 'Texto que aparecerá en el copyright',
+      description: 't',
       type: 'string',
     }
   },

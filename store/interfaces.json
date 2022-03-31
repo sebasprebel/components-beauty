@@ -27,5 +27,8 @@
   },
   "custom-menu-desktop":{
     "component": "DesktopMenu"
+  },
+  "custom-menu-mobile":{
+    "component": "MobileMenu"
   }
 }

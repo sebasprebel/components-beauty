@@ -8,8 +8,8 @@ li{
   list-style: none;
 }
 :root{
-  --height: 412px;
-  --bottom: -412px
+  --height: 330px;
+  --bottom: -330px
 }
 a{
   text-decoration: none;
