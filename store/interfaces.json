@@ -30,5 +30,8 @@
   },
   "custom-menu-mobile":{
     "component": "MobileMenu"
+  },
+  "product-spec-use":{
+    "component": "ProductSpecUse"
   }
 }
