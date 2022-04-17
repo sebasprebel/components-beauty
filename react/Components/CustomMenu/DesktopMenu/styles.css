@@ -18,21 +18,20 @@ a{
 .desktop-menu__item{
   cursor: pointer;
   padding: .5rem .3rem;
-  position: relative;
+  margin-bottom: 0;
+  height:100%;
 }
 .desktop-menu__item a,
 .desktop-submenu__content--list a{
   color: #000000;
 }
 
-.desktop-menu__item:hover::after{
-  content: "";
-  position: absolute;
-  width:100%;
-  height: 5px;
-  background-color: #FFA9BE;
-  left: 0;
-  bottom: 0px;
+.desktop-menu__item:hover  .desktop-submenu__container,
+.desktop-submenu__container:hover{
+  display:flex ;
+}
+.desktop-menu__item:hover{
+  box-shadow: inset 0 -5px 0  var(--main-color);
 }
 
 .isActive::before{
@@ -41,7 +40,7 @@ a{
   width:100%;
   display: block;
   height: 5px;
-  background-color: #FFA9BE;
+  background-color: var(--main-color);
   left: 0;
   bottom: 0px;
 }
@@ -65,8 +64,10 @@ a{
   background-color: #fff;
   border-top: 1px solid #FFA9BE;
   z-index: 2;
+  width: 100%;
+  position: absolute;
+  left: 0;
   bottom:var(--bottom);
-  display: flex;
   justify-content: center;
 }
 
@@ -111,7 +112,8 @@ a{
 
 .desktop-submenu__link-see-all:hover,
 .desktop-submenu__subcategory--title:hover,
-.desktop-submenu__subcategory--element:hover{
+.desktop-submenu__subcategory--element:hover,
+.not-categorie-element:hover{
   text-decoration: underline;
 }
 
@@ -127,4 +129,10 @@ a{
 
 .highlight > a{
   font-size: 1.1rem;
+}
+
+.not-categorie-element{
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 0rem;
 }

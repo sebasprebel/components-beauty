@@ -1,10 +1,11 @@
 
 import React from 'react';
 import {Link} from "vtex.render-runtime"
-import { SubCategoriesProps,submenuItemsProps} from "../../../typings/customMenu"
+import { SubMenuProps} from "../../../typings/desktopMenu"
 import { useCssHandles } from 'vtex.css-handles'
-import orderAlphabetic from "../../../utils/orderAlphabetic"
 import sliceArray from "../../../utils/sliceArray"
+import orderAlphabetic from "../../../utils/orderAlphabetic"
+import SubSubMenu from "./SubSubMenu"
 import "./styles.css"
 
  const CSS_HANDLES = [
@@ -15,37 +16,43 @@ import "./styles.css"
    "desktop-submenu__subcategory--title",
    "desktop-submenu__content--card",
    "desktop-submenu__subcategory--element",
-   "desktop-submenu__overflow-layer"
+   "desktop-submenu__overflow-layer",
+   "not-categorie-element"
 ]
 
-const SubMenu = ({ subMenuToShow, name, href, handleLeave}:SubCategoriesProps) => {
+const SubMenu = ({  name, href, children, notCategoriesMenu}:SubMenuProps) => {
    const handles = useCssHandles(CSS_HANDLES)
   return (
-      <div className={`${handles["desktop-submenu__container"]} absolute w-100`}>
+      <div className={`${handles["desktop-submenu__container"]} dn absolute w-100`}>
       <section  className={`${handles["desktop-submenu__content"]} absolute w-100`}>
       <div className={`${handles["desktop-submenu__content--list"]}`}>
         <Link to={href} className={`${handles["desktop-submenu__link-see-all"]}`}>Ver todo {name}</Link>
-        {sliceArray(subMenuToShow?.children,4)?.map(({name, children, href}:SubCategoriesProps)=>{
+        
+        {notCategoriesMenu?
+           orderAlphabetic(sliceArray(children,30))?.map((brand:any)=>{
+            return(
+              <div className={`${handles["desktop-submenu__content--card"]}`}>
+                <Link to={`/${brand.slug}`}>
+                  <h5 className={`${handles["not-categorie-element"]}`}>{brand.name}</h5>
+                </Link>
+              </div>
+            )
+          })
+        :
+        sliceArray(children,4)?.map(({name, children, href}:SubMenuProps)=>{
           return(
             <div className={`${handles["desktop-submenu__content--card"]}`}>
               <Link to={href}>
                 <h5 className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</h5>
               </Link>
-              <ul>
-                {sliceArray(orderAlphabetic(children),5)?.map(({name, href}:submenuItemsProps)=>{
-                  return(
-                    <li  key={href} className={`${handles["desktop-submenu__subcategory--element"]}`}>
-                      <Link to={href}>{name}</Link>
-                    </li>
-                  )
-                })}
-              </ul>
+             <SubSubMenu children={children}/>
             </div>
           )
-        })}
+        })
+        }
       </div>
     </section>
-    <div className={`${handles["desktop-submenu__overflow-layer"]}`} onClick={handleLeave}></div>
+    {/* <div className={`${handles["desktop-submenu__overflow-layer"]}`} ></div> */}
     </div>
   
     

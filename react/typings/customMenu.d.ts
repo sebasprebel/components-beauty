@@ -11,7 +11,7 @@ export type MenuItemProps={
   name: string
   href: string
   id: number
-  handleClick:any
+  handleClick?:any
   isLinkItem?:boolean
   isHighlight?:boolean
   isActive?:boolean
