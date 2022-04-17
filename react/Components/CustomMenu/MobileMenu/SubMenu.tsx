@@ -47,23 +47,8 @@ const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack}:any) 
         })}
       </div>
     </section>
-
-  
-    
-    
   )
 }
 
-SubMenu.schema = {
-  title: 'Submenú',
-  type: 'object',
-  properties: {
-    text: {
-      title: 'Texto',
-      description: 't',
-      type: 'string',
-    }
-  },
-}
 
 export default SubMenu
