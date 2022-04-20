@@ -33,5 +33,12 @@
   },
   "product-spec-use":{
     "component": "ProductSpecUse"
+  },
+  "sku-color":{
+    "component": "SKUColor"
+  },
+  "search-info-custom":{
+    "component": "SearchInfo"
   }
+  
 }

@@ -22,7 +22,6 @@ const DesktopMenu = () => {
   const categories = data?.categories[0]?.children
   const brands = brandsData?.data?.brands
   const activeBrands = brands?.filter((brand:any)=>brand.active === true)
-  console.log(activeBrands)
   return (
     <div className="relative flex justify-center w-100">
       <nav className={`${handles["desktop__menu--nav"]}`}>
