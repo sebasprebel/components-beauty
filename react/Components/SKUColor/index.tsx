@@ -8,9 +8,9 @@ import {
 
 const SKUColor = () => {
   const {  searchQuery } = useSearchPage()
-  const { page} = useRuntime()
+  const { page, deviceInfo} = useRuntime()
   const [filterColors,setFilterColors] =useState([])
-  // const [filterColorsMobile,setFilterColorsMobile] =useState([])
+  //  const [filterOpened,setFilterOpened] =useState(false)
   const [productCardColors,setProductCardColors] =useState({
     elements: [],
     size:0
@@ -25,11 +25,14 @@ const SKUColor = () => {
       ?
         null
       :
+      deviceInfo.type ==="desktop"
+      ?
         setFilterColors(Array.from(document?.querySelectorAll(".vtex-search-result-3-x-filter__container--specificationFilter_33 .vtex-checkbox__label")))
+      :
+        setFilterColors(Array.from(document?.querySelectorAll(".vtex-search-result-3-x-accordionFilterOpen--gama-colores .vtex-checkbox__label")))
        
     },[searchQuery])
 
-    console.log({filterColors})
     useEffect(()=>{
       setProductCardColors({size:Array.from(document?.querySelectorAll(".vtex-store-components-3-x-skuSelectorItemTextValue")).length,
          elements:Array.from(document?.querySelectorAll(".vtex-store-components-3-x-skuSelectorItemTextValue"))}) 

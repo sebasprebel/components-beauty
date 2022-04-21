@@ -1,0 +1,37 @@
+.search-info__container{
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+.search-info__title{
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-info__content{
+  font-size: 0.8125rem;
+}
+
+.search-info__bullets--container{
+  display: flex;
+  gap: 2rem;
+  margin-block: 2.5rem;
+  padding-block: 1rem;
+  overflow-x: auto;
+}
+
+.search-info__bullet{
+  height: 35px;
+  margin: 0;
+}
+
+.search-info__bullet a{
+  font-size: 0.875rem;
+  border: 1px solid var(--black);
+  border-radius: 24px;
+  padding: .4rem 1.5rem;
+  font-family: var(--font-poppins-semibold);
+}
+
+.search-info__bullet a:hover{
+  background-color:var(--light-grey)
+}

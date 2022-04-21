@@ -6,21 +6,25 @@ import {
   useSearchPage,
 } from 'vtex.search-page-context/SearchPageContext'
 // import { Link } from 'vtex.render-runtime'
-// import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles } from 'vtex.css-handles'
+import "./styles.css"
 
 
 
-// const CSS_HANDLES = [
-//   'responsiveImageContainer',
-//   'responsiveImageLink',
-//   'responsiveImage',
-// ]
+const CSS_HANDLES = [
+  'search-info__container',
+  'search-info__title',
+  'search-info__content',
+  'search-info__bullet',
+  'search-info__bullets--container',
+]
 
 const SearchInfo = () => {
-  // const handles = useCssHandles(CSS_HANDLES)
+  const handles = useCssHandles(CSS_HANDLES)
   const [dataToShow,setDataToShow]=useState({
     name:"",
     metaTagDescription:"",
+    children:[]
   })
   const { data } = useQuery(getDepartments)
   const {  searchQuery:{variables:{selectedFacets}} } = useSearchPage()
@@ -52,9 +56,18 @@ const SearchInfo = () => {
   console.log(dataToShow)
 
   return (
-    <div>
-      <h3>{dataToShow?.name}</h3>
-      <p>{dataToShow?.metaTagDescription}</p>
+    <div className={`${handles["search-info__container"]}`}>
+      <h3 className={`${handles["search-info__title"]}`}>{dataToShow?.name}</h3>
+      <p className={`${handles["search-info__content"]}`}>{dataToShow?.metaTagDescription}</p>
+      <ul className={`${handles["search-info__bullets--container"]}`}>
+        {dataToShow?.children?.map((chil:any)=>{
+          return(
+            <li className={`${handles["search-info__bullet"]}`}>
+              <a href={chil.href}> {chil?.name}</a>
+            </li>
+          )
+        })}
+      </ul>
     </div>
     
   )
