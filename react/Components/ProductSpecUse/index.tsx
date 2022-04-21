@@ -10,8 +10,8 @@ const ProductSpecUse = () => {
 
   const handles = useCssHandles(CSS_HANDLES)
   const {product:{specificationGroups}} = useProduct()
-  const contentAttributes = specificationGroups?.find((specGroup:any)=>specGroup.name=== "allSpecifications")
-  const modeOfUse = contentAttributes?.specifications?.find((specGroup:any)=>specGroup.name=== "Modo de Uso")
+  const contentAttributes = specificationGroups?.find((specGroup:any)=>specGroup?.name=== "allSpecifications")
+  const modeOfUse = contentAttributes?.specifications?.find((specGroup:any)=>specGroup?.name=== "Modo de Uso")
   const modeOfUseContent = modeOfUse?.values
 
   return (
@@ -19,7 +19,7 @@ const ProductSpecUse = () => {
        {modeOfUseContent? modeOfUseContent?.map((value:any)=>{
          return(
           <div className={`${handles["spec__content"]}`}>
-            {value}
+            {value && value}
           </div>
          )
        }):<p>Este producto no tiene modo de uso especificado.</p>}

@@ -3,18 +3,22 @@ query{
     id,
     name,
     href,
+    metaTagDescription,
     children{
       id,
       name,
       href,
+      metaTagDescription,
       children{
         id,
         name,
         href,
+        metaTagDescription,
         children{
           id,
           name,
-          href
+          href,
+          metaTagDescription
         }
       }
     }

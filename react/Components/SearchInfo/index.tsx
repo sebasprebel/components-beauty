@@ -1,8 +1,10 @@
-import React from 'react'
-// import {
-
-//   useSearchPage,
-// } from 'vtex.search-page-context/SearchPageContext'
+import React, {useState, useEffect}from 'react'
+import { useRuntime } from 'vtex.render-runtime'
+import { useQuery } from 'react-apollo';
+import getDepartments from "../../Queries/getDepartments.gql"
+import {
+  useSearchPage,
+} from 'vtex.search-page-context/SearchPageContext'
 // import { Link } from 'vtex.render-runtime'
 // import { useCssHandles } from 'vtex.css-handles'
 
@@ -16,45 +18,52 @@ import React from 'react'
 
 const SearchInfo = () => {
   // const handles = useCssHandles(CSS_HANDLES)
-  // const { searchQuery } = useSearchPage()
+  const [dataToShow,setDataToShow]=useState({
+    name:"",
+    metaTagDescription:"",
+  })
+  const { data } = useQuery(getDepartments)
+  const {  searchQuery:{variables:{selectedFacets}} } = useSearchPage()
+  const categories = data?.categories[0]?.children
+  const subCategories = data?.categories[0]?.children?.map((categorie:any)=>{
+    return(
+      categorie?.children
+    )
+  }).flat()
+  const facetsSelected = selectedFacets?.filter((facet:any)=>facet.key=== "c")
+  const currentCategory = facetsSelected[facetsSelected.length-1]
+  const {page} = useRuntime()
+
+  useEffect(()=>{
+
+  if(page === "store.search#category"){
+    setDataToShow(categories?.filter((categorie:any)=>{
+
+      return categorie?.name.toLowerCase()===currentCategory?.value.toLowerCase()
+    })[0])
+  }else{
+    if(page === "store.search#subcategory"){
+      setDataToShow(subCategories?.filter((categorie:any)=>categorie?.name.toLowerCase()===currentCategory?.value.toLowerCase())[0])
+    }
+  }
+
+  },[selectedFacets])
+  
+  console.log(dataToShow)
 
   return (
-    <p></p>
+    <div>
+      <h3>{dataToShow?.name}</h3>
+      <p>{dataToShow?.metaTagDescription}</p>
+    </div>
+    
   )
   
 }
 
 SearchInfo.schema = {
-  title: 'Imagen responsive',
+  title: 'Search header',
   type: 'object',
-  properties: {
-    mobileImage: {
-      title: 'Imagen para mobile',
-      type: 'string',
-      widget: {
-        'ui:widget': 'image-uploader',
-      },
-    },
-    desktopImage: {
-      title: 'Imagen para desktop',
-      type: 'string',
-      widget: {
-        'ui:widget': 'image-uploader',
-      },
-    },
-    link: {
-      title: 'Link para la imagen (Opcional)',
-      type: 'string',
-    },
-    external: {
-      title: 'Link por fuera de la tienda',
-      type: 'boolean',
-    },
-    alt: {
-      title: 'Titulo de la imagen',
-      type: 'string',
-    },
-  },
 }
 
 export default SearchInfo
