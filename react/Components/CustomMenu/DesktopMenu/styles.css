@@ -15,6 +15,9 @@ a{
   text-decoration: none;
 }
 
+.desktop__menu{
+  border-bottom: 1px solid var(--main-color);
+}
 .desktop-menu__item{
   cursor: pointer;
   padding: .5rem .3rem;

@@ -27,7 +27,7 @@ const SearchInfo = () => {
     children:[]
   })
   const { data } = useQuery(getDepartments)
-  const {  searchQuery:{variables:{selectedFacets}} } = useSearchPage()
+  const {  searchQuery:{variables:{selectedFacets}}} = useSearchPage()
   const categories = data?.categories[0]?.children
   const subCategories = data?.categories[0]?.children?.map((categorie:any)=>{
     return(

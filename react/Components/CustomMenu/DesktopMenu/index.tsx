@@ -9,6 +9,7 @@ import MenuItem from "./MenuItem"
 import "./styles.css"
 
 const CSS_HANDLES = [
+  'desktop__menu',
   'desktop__menu--nav',
   "desktop__menu--list",
   'desktop__menu--highlight-item',
@@ -23,7 +24,7 @@ const DesktopMenu = () => {
   const brands = brandsData?.data?.brands
   const activeBrands = brands?.filter((brand:any)=>brand.active === true)
   return (
-    <div className="relative flex justify-center w-100">
+    <div className={`relative flex justify-center w-100 ${handles["desktop__menu"]}`}>
       <nav className={`${handles["desktop__menu--nav"]}`}>
         <ul className={`${handles["desktop__menu--list"]} flex`}>
           {sliceArray(categories)?.map(({ name, href, id, children }: MenuItemProps) => {
