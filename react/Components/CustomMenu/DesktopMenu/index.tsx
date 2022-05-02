@@ -1,10 +1,5 @@
 import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import { MenuItemProps} from "../../../typings/desktopMenu"
-import { useQuery } from 'react-apollo';
-import getDepartments from "../../../Queries/getDepartments.gql"
-import getBrands from "../../../Queries/getBrands.gql"
-import sliceArray from "../../../utils/sliceArray"
 import MenuItem from "./MenuItem"
 import "./styles.css"
 
@@ -16,43 +11,22 @@ const CSS_HANDLES = [
 ]
 
 
-const DesktopMenu = () => {
+const DesktopMenu = (categories:any) => {
   const handles = useCssHandles(CSS_HANDLES)
-  const { data } = useQuery(getDepartments)
-  const brandsData = useQuery(getBrands)
-  const categories = data?.categories[0]?.children
-  const brands = brandsData?.data?.brands
-  const activeBrands = brands?.filter((brand:any)=>brand.active === true)
+  console.log(categories)
   return (
     <div className={`relative flex justify-center w-100 ${handles["desktop__menu"]}`}>
       <nav className={`${handles["desktop__menu--nav"]}`}>
         <ul className={`${handles["desktop__menu--list"]} flex`}>
-          {sliceArray(categories)?.map(({ name, href, id, children }: MenuItemProps) => {
+          {categories?.categories?.length > 0 ? categories?.categories?.map(({id}: any) => {
             return (
 
               <MenuItem
                 key={id}
-                name={name}
-                href={href}
                 id={id}
-                children={children}
               />
             )
-          })}
-          <MenuItem
-            name="Marcas"
-            href="/marcas"
-            id={1000}
-            children={activeBrands}
-            notCategorieItem={true}
-          />
-          <MenuItem
-            name="Sale"
-            href="/sale"
-            id={10001}
-            isLinkItem={true}
-            isHighlight={true}
-          />
+          }):<p>Pruebita</p>}
         </ul>
       </nav>
         
@@ -63,14 +37,42 @@ const DesktopMenu = () => {
 
 //Falta organizar el schema
 DesktopMenu.schema = {
-  title: 'Menú custom',
+  title: 'Menu Desktop',
   type: 'object',
   properties: {
-    text: {
-      title: 'Texto',
-      description: '',
-      type: 'string',
-    }
+    categories: {
+      title: 'Departamentos en el menú',
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: {
+            title: 'ID de la categoría (Categoría de segundo nivel)',
+            type: 'number',
+          },
+          menuBanners: {
+            title: 'Banners del menú para la categoría',
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                link: {
+                  title: 'Link',
+                  type: 'string',
+                },
+                image: {
+                  title: 'imagen',
+                  type: 'string',
+                  widget: {
+                    'ui:widget': 'image-uploader',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
 }
 

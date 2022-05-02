@@ -1,0 +1,19 @@
+query getFacets($query: String, $map: String) {
+  facets(query: $query, map: $map) @context(provider: "vtex.search-graphql") {
+    categoriesTrees {
+      id
+      name
+      link
+      children {
+        id
+        name
+        link
+        children {
+          id
+          name
+          link
+        }
+      }
+    }
+  }
+}

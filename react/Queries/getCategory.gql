@@ -1,0 +1,15 @@
+query getCategory($id: any) {
+  category(id: $id)  @context(provider: "vtex.store-graphql"){
+    name,
+    id,
+    children{
+      name,
+      id
+      children{
+        name,
+        id
+      }
+    }
+  }
+}
+

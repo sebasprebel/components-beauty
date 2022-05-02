@@ -10,6 +10,7 @@ export type MenuItemProps={
   isHighlight?:boolean
   showSubMenu?:boolean
   notCategorieItem?:boolean
+  menuBanners?:any
 }
 
 export type SubMenuProps={
