@@ -39,6 +39,9 @@
   },
   "search-info-custom":{
     "component": "SearchInfo"
+  },
+  "addi":{
+    "component": "Addi"
   }
   
 }
