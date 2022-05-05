@@ -8,14 +8,13 @@ import {
 
 const SKUColor = () => {
   const {  searchQuery } = useSearchPage()
-  const { page, deviceInfo} = useRuntime()
+  const { page, deviceInfo, route:{canonicalPath}} = useRuntime()
   const [filterColors,setFilterColors] =useState([])
   //  const [filterOpened,setFilterOpened] =useState(false)
   const [productCardColors,setProductCardColors] =useState({
     elements: [],
     size:0
   })
-
 
   typeof document === 'undefined'?
     null
@@ -34,9 +33,11 @@ const SKUColor = () => {
     },[searchQuery])
 
     useEffect(()=>{
+console.log(canonicalPath)
+
       setProductCardColors({size:Array.from(document?.querySelectorAll(".vtex-store-components-3-x-skuSelectorItemTextValue")).length,
          elements:Array.from(document?.querySelectorAll(".vtex-store-components-3-x-skuSelectorItemTextValue"))}) 
-    },[])
+    },[canonicalPath])
 
 
     filterColors.forEach((e:any)=>{

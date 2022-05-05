@@ -17,10 +17,11 @@ import "./styles.css"
    "desktop-submenu__content--card",
    "desktop-submenu__subcategory--element",
    "desktop-submenu__overflow-layer",
-   "not-categorie-element"
+   "not-categorie-element",
+   "banner-text"
 ]
 
-const SubMenu = ({  name, href, children, notCategoriesMenu}:SubMenuProps) => {
+const SubMenu = ({  name, href, children, notCategoriesMenu, menuBanner}:any) => {
    const handles = useCssHandles(CSS_HANDLES)
   return (
       <div className={`${handles["desktop-submenu__container"]} dn absolute w-100`}>
@@ -51,6 +52,14 @@ const SubMenu = ({  name, href, children, notCategoriesMenu}:SubMenuProps) => {
         })
         }
       </div>
+      <div>
+        <a href={menuBanner?.link}>
+        <img src={menuBanner?.image} alt="Banner image" />
+        <p className={`${handles["banner-text"]}`}>{menuBanner?.text}</p>
+        </a>
+      
+      </div>
+        
     </section>
     {/* <div className={`${handles["desktop-submenu__overflow-layer"]}`} ></div> */}
     </div>

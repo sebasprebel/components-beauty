@@ -1,14 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
+
 
 
 const Addi = () => {
-
-  const [test,setTest]= useState<any>()
      
   useEffect(() => {
     const script = document.createElement("script")
-    // const script2 = document.createElement("script")
-    
 
     script.src =
     "https://s3.amazonaws.com/statics.addi.com/vtex/js/vtex-co-widget-wrapper.bundle.min.js"
@@ -19,7 +16,6 @@ const Addi = () => {
     script.setAttribute("data-ally-slug","beautyholicsprebel-ecommerce")
     script.setAttribute("widget-margin","10px auto")
     script.async = true;
-    setTest(script)
     document.body.appendChild(script)
 
     return () => {
@@ -27,11 +23,8 @@ const Addi = () => {
     }
   }, [])
 
-  console.log(test)
   return (
-    <>
-     
-    </>
+    <></>
   )
 }
 

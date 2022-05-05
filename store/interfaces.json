@@ -42,6 +42,10 @@
   },
   "addi":{
     "component": "Addi"
+  },
+  "seller-custom":{
+    "component": "SellerInfo"
   }
+
   
 }

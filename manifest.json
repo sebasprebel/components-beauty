@@ -19,7 +19,10 @@
     "vtex.store-graphql": "2.x",
     "vtex.store-icons": "0.x",
     "vtex.product-context": "0.x",
-    "vtex.search-page-context": "0.x"
+    "vtex.search-page-context": "0.x",
+    "vtex.product-list-context": "0.x",
+    "vtex.order-manager": "0.x",
+    "vtex.order-items": "0.x"
   },
   "registries": [
     "smartcheckout"
