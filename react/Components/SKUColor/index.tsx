@@ -26,7 +26,7 @@ const SKUColor = () => {
       :
       deviceInfo.type ==="desktop"
       ?
-        setFilterColors(Array.from(document?.querySelectorAll(".vtex-search-result-3-x-filter__container--specificationFilter_33 .vtex-checkbox__label")))
+        setFilterColors(Array.from(document?.querySelectorAll(".vtex-search-result-3-x-filter__container--gama-colores .vtex-checkbox__label")))
       :
         setFilterColors(Array.from(document?.querySelectorAll(".vtex-search-result-3-x-accordionFilterOpen--gama-colores .vtex-checkbox__label")))
        

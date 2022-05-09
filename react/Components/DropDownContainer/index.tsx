@@ -38,7 +38,7 @@ const DropDownContainer = ({
           {text}
         </p>
     </div>
-    <div onClick={handleSetShowMore} className={`${dropDown__button}`}>Ver más ▼</div>
+    <div onClick={handleSetShowMore} className={`${dropDown__button}`}>{showMore?"Ver menos ▲":"Ver más ▼"}</div>
     </div>
     
   )

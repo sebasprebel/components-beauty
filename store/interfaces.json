@@ -45,6 +45,9 @@
   },
   "seller-custom":{
     "component": "SellerInfo"
+  },
+  "seller-custom-cart":{
+    "component": "SellerInfoCart"
   }
 
   

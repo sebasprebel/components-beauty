@@ -81,7 +81,7 @@ DesktopMenu.schema = {
             type: 'object',
               properties: {
                 link: {
-                  title: 'Link',
+                  title: 'Link al que redirige el Banner',
                   type: 'string',
                 },
                 image: {
@@ -92,7 +92,7 @@ DesktopMenu.schema = {
                   },
                 },
                 text:{
-                  title: 'Texto',
+                  title: 'Texto del Banner',
                   type: 'string',
                 }
               }, 
