@@ -32,6 +32,8 @@ const HighlightContent = ({
               secundaryImage={item.secundaryImage}
               text={item.text}
               link={item.link}
+              backgroundColor={item.backgroundColor}
+              isHighlight={item.isHighlight}
               key={`highlightContent-${index}`}
             />
           ))}
@@ -43,6 +45,8 @@ const HighlightContent = ({
             secundaryImage={item.secundaryImage}
             text={item.text}
             link={item.link}
+            backgroundColor={item.backgroundColor}
+            isHighlight={item.isHighlight}
             key={`highlightContent-${index}`}
           />
         ))
@@ -83,6 +87,17 @@ HighlightContent.schema = {
             title: 'Link',
             type: 'string',
           },
+          backgroundColor: {
+            title: 'Background Color',
+            type: 'string',
+            widget: {
+              'ui:widget': 'color',
+            }
+          },
+          isHighlight: {
+            title: 'Es un ítem resaltado',
+            type: 'boolean'
+          }
         },
       },
     },

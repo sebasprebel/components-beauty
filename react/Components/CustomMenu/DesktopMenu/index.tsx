@@ -18,7 +18,7 @@ const DesktopMenu = (categories:any) => {
     <div className={`relative flex justify-center w-100 ${handles["desktop__menu"]}`}>
       <nav className={`${handles["desktop__menu--nav"]}`}>
         <ul className={`${handles["desktop__menu--list"]} flex`}>
-          {categories?.categories?.length > 0 ? categories?.categories?.map(({id, menuBanner, isNotCategoryItem, name, isHighlight, isLink, href}: any) => {
+          {categories?.categories?.length > 0 ? categories?.categories?.map(({id, subcategories,menuBanner, isNotCategoryItem, name, isHighlight, isLink, href}: any) => {
             return (
                <MenuItem
                 key={id}
@@ -29,6 +29,7 @@ const DesktopMenu = (categories:any) => {
                 isHighlight={isHighlight}
                 isLink={isLink}
                 href={href}
+                subcategories={subcategories}
               />
             )
           }):null}
@@ -57,7 +58,7 @@ DesktopMenu.schema = {
             type: 'string'
           },
           id: {
-            title: 'ID de la categoría (Categoría de segundo nivel)',
+            title: 'ID de la categoría ',
             type: 'number',
           },
           isNotCategoryItem:{
@@ -73,8 +74,28 @@ DesktopMenu.schema = {
             type: 'boolean'
           },
           href:{
-            title: 'Ruta a redirigir',
+            title: 'Ruta a redirigir si el ítem es un link',
             type: 'string'
+          },
+          subcategories:{
+            title:"Subcategorías para mostrar",
+            type: 'array',
+            items:{
+              type: 'object',
+              properties: {
+                id:{
+                  title: 'ID de la subcategoría',
+                  type: 'number',
+                },
+                subSubCategories:{
+                  title: 'Sub - Subcategories',
+                  type: "array",
+                  items:{
+                    type: 'number',
+                  }
+                }
+            }
+          }
           },
           menuBanner: {
             title: 'Banner del menú para la categoría',

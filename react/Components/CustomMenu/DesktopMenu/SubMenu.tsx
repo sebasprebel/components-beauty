@@ -21,8 +21,29 @@ import "./styles.css"
    "banner-text"
 ]
 
-const SubMenu = ({  name, href, children, notCategoriesMenu, menuBanner}:any) => {
+const SubMenu = ({  name, subcategories,href, children, notCategoriesMenu, menuBanner}:any) => {
    const handles = useCssHandles(CSS_HANDLES)
+
+   const subcategoriesToShow = children?.filter((element:any)=>{
+     return(
+      subcategories?.find((sub:any)=>sub?.id === element?.id)
+     )
+   })?.sort((a:any,b:any)=>a?.children?.length - b?.children?.length)
+    const subSubcategoriesIds = subcategories?.map((test:any)=>test.subSubCategories).flat()
+    subcategoriesToShow?.forEach((test2:any)=> {
+     return(
+       test2.children = test2?.children.filter((test3:any)=>{
+         return(
+          subSubcategoriesIds.find((test4:any)=>test4 === test3?.id)
+         )
+       })
+     )
+   })
+
+   console.log(subcategoriesToShow)
+
+ 
+
   return (
       <div className={`${handles["desktop-submenu__container"]} dn absolute w-100`}>
       <section  className={`${handles["desktop-submenu__content"]} absolute w-100`}>
@@ -40,11 +61,11 @@ const SubMenu = ({  name, href, children, notCategoriesMenu, menuBanner}:any) =>
             )
           })
         :
-        sliceArray(children,4)?.map(({name, children, href}:SubMenuProps)=>{
+        subcategoriesToShow?.map(({name, children, href}:SubMenuProps)=>{
           return(
             <div className={`${handles["desktop-submenu__content--card"]}`}>
               <Link to={href}>
-                <h5 className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</h5>
+                {children.length > 0 ?<h5 className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</h5>: <li className={`${handles["desktop-submenu__subcategory--element"]}`}>{name}</li>}
               </Link>
              <SubSubMenu children={children}/>
             </div>
@@ -61,24 +82,9 @@ const SubMenu = ({  name, href, children, notCategoriesMenu, menuBanner}:any) =>
       </div>
         
     </section>
-    {/* <div className={`${handles["desktop-submenu__overflow-layer"]}`} ></div> */}
     </div>
-  
-    
-    
   )
 }
 
-SubMenu.schema = {
-  title: 'Submenú',
-  type: 'object',
-  properties: {
-    text: {
-      title: 'Texto',
-      description: 't',
-      type: 'string',
-    }
-  },
-}
 
 export default SubMenu

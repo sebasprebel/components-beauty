@@ -12,7 +12,7 @@ const CSS_HANDLES = [
   "highlight"
 ]
 
-const MenuItem = ({id, menuBanner, isNotCategoryItem, name, isLink, isHighlight, href}: any) => {
+const MenuItem = ({id, menuBanner, subcategories,isNotCategoryItem, name, isLink, isHighlight, href}: any) => {
    const handles = useCssHandles(CSS_HANDLES)
    const {data} = useQuery(getDepartments)
    const brands = useQuery(getBrands)
@@ -35,7 +35,9 @@ const MenuItem = ({id, menuBanner, isNotCategoryItem, name, isLink, isHighlight,
             menuBanner={menuBanner} 
             children={categoryToShow?.children} 
             name={categoryToShow?.name} 
-            href={categoryToShow?.href}/>
+            href={categoryToShow?.href}
+            subcategories={subcategories}/>
+            
       </li>:
       isNotCategoryItem?
       <li className={`${handles["desktop-menu__item"]}`}>
@@ -50,8 +52,6 @@ const MenuItem = ({id, menuBanner, isNotCategoryItem, name, isLink, isHighlight,
             
       </li>:null
      }
-          
-      
     </>
 
   )

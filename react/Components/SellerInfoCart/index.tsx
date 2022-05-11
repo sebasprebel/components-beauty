@@ -4,7 +4,7 @@ import {useItemContext} from "vtex.product-list/ItemContext"
 
 
 
-var sellerList:any= {
+const sellerList:any= {
   '1': 'Beautyholics',
   'mindnaturals': 'Mind Naturals',
   'dermatologicaco': 'Dermatológica',

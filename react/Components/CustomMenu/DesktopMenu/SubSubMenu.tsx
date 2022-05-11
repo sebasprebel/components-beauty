@@ -3,8 +3,6 @@ import React from 'react';
 import {Link} from "vtex.render-runtime"
 import {SubSubMenuProps, SubSubMenuItemProps} from "../../../typings/desktopMenu"
 import { useCssHandles } from 'vtex.css-handles'
-import orderAlphabetic from "../../../utils/orderAlphabetic"
-import sliceArray from "../../../utils/sliceArray"
 import "./styles.css"
 
  const CSS_HANDLES = [
@@ -16,7 +14,7 @@ const SubSubMenu = ({ children }:SubSubMenuProps) => {
   return (
      
     <ul>
-      {sliceArray(orderAlphabetic(children),5)?.map(({name, href}:SubSubMenuItemProps)=>{
+      {children?.map(({name, href}:SubSubMenuItemProps)=>{
         return(
           <li  key={href} className={`${handles["desktop-submenu__subcategory--element"]}`}>
             <Link to={href}>{name}</Link>

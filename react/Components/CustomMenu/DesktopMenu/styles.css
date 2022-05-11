@@ -111,12 +111,18 @@ a{
   flex-direction: column;
   padding-block:1.5rem;
   flex-wrap: wrap;
-  width: 66%;
 }
 .desktop-submenu__content--card{
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   margin-right: 2rem;
 }
+.desktop-submenu__content--card ul{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 335px;
+  gap: 0 1rem;
+} 
 .desktop-submenu__subcategory--title{
   font-size: 1rem;
   font-weight: bold;
@@ -146,7 +152,7 @@ a{
 .not-categorie-element{
   font-size: 1rem;
   font-weight: 300;
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
 }
 
 .banner-text{

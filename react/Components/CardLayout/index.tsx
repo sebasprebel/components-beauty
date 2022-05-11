@@ -8,6 +8,8 @@ export type CardLayoutProps = {
   secundaryImage: string
   text: string
   link: string
+  backgroundColor: string
+  isHighlight: boolean
 }
 
 const CSS_HANDLES = [
@@ -16,15 +18,17 @@ const CSS_HANDLES = [
   'cardLayout__image',
   'cardLayout__secundary_image',
   'cardLayout__text',
+  "highlight__item",
+  "highlight__link"
 ]
 
-const CardLayout = ({ image, secundaryImage, text, link }: CardLayoutProps) => {
+const CardLayout = ({ image, secundaryImage, text, link, backgroundColor, isHighlight}: CardLayoutProps) => {
   const handles = useCssHandles(CSS_HANDLES)
 
   return (
-    <article className={handles.cardLayout}>
+    <article className={`${handles.cardLayout} ${isHighlight?handles.highlight__item:""}`} style={{backgroundColor:backgroundColor}}>
       {link ? (
-        <Link to={link} className={`${handles.cardLayout__content} db link`}>
+        <Link to={link} className={`${handles.cardLayout__content} ${isHighlight?handles.highlight__link:""} db link`}>
           {image && (
             <img
               className={`${handles.cardLayout__image} db`}
