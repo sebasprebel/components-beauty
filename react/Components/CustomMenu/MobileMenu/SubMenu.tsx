@@ -1,8 +1,6 @@
-
 import React from 'react';
 import {Link} from "vtex.render-runtime"
 // import orderAlphabetic from "../../../utils/orderAlphabetic"
-import sliceArray from "../../../utils/sliceArray"
 import { useCssHandles } from 'vtex.css-handles'
 import "./styles.css"
 
@@ -34,13 +32,13 @@ const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack}:any) 
         </div>
         
         <Link to={href} className={`${handles["mobile__see-all"]}`}>Ver todo {name}</Link>
-        {sliceArray(subMenuToShow?.children,4)?.map(({name, id, children, href}:any)=>{
+        {subMenuToShow?.menuItems?.map(({name, id, subItems, href}:any)=>{
           return(
             <div className="flex justify-between">
                 <li>
                   <Link to={href}>{name}</Link>
                 </li>
-                <div data-id={id} onClick={handleShowSub} className={`${handles["arrow__container"]} ${children?.length > 0? "":handles["hide"]}`}></div>
+                <div data-id={id} onClick={handleShowSub} className={`${handles["arrow__container"]} ${subItems?.length > 0? "":handles["hide"]}`}></div>
             </div>
             
           )

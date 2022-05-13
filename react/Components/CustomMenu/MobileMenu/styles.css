@@ -30,6 +30,9 @@ li{
 .hide{
   display:none;
 }
+.show{
+  display:block;
+}
 
 .mobile__categories--title{
   font-size: 1.125rem;
@@ -52,4 +55,9 @@ li{
   left: 0rem;
   z-index: 2;
   transition: all 1s ease-in-out;
+}
+
+.highLight-mobile{
+  color: var(--main-color);
+  font-family: var(--font-poppins-semibold);
 }

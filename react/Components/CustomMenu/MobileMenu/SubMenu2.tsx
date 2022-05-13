@@ -1,8 +1,6 @@
-
 import React from 'react';
 import {Link} from "vtex.render-runtime"
 // import orderAlphabetic from "../../../utils/orderAlphabetic"
-import sliceArray from "../../../utils/sliceArray"
 import { useCssHandles } from 'vtex.css-handles'
 import "./styles.css"
 
@@ -34,7 +32,7 @@ const SubMenu2= ({ subMenu2ToShow, name, href, back2, setBack2}:any) => {
           <h3 className={`${handles["mobile__categories--title"]}`}>{name} </h3>
         </div>
         <Link to={href} className={`${handles["mobile__see-all"]}`}>Ver todo {name}</Link>
-        {sliceArray(subMenu2ToShow?.children,4)?.map(({name, href}:any)=>{
+        {subMenu2ToShow?.subItems?.map(({name, href}:any)=>{
           return(
             <li>
             <Link to={href}>{name}</Link>

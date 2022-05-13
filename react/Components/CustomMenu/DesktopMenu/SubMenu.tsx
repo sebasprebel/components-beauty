@@ -1,10 +1,7 @@
 
 import React from 'react';
 import {Link} from "vtex.render-runtime"
-import { SubMenuProps} from "../../../typings/desktopMenu"
 import { useCssHandles } from 'vtex.css-handles'
-import sliceArray from "../../../utils/sliceArray"
-import orderAlphabetic from "../../../utils/orderAlphabetic"
 import SubSubMenu from "./SubSubMenu"
 import "./styles.css"
 
@@ -18,29 +15,13 @@ import "./styles.css"
    "desktop-submenu__subcategory--element",
    "desktop-submenu__overflow-layer",
    "not-categorie-element",
-   "banner-text"
+   "banner-text",
+   "banner-container",
+   "banner-content"
 ]
 
-const SubMenu = ({  name, subcategories,href, children, notCategoriesMenu, menuBanner}:any) => {
+const SubMenu = ({  name, menuItems,href,menuBanner}:any) => {
    const handles = useCssHandles(CSS_HANDLES)
-
-   const subcategoriesToShow = children?.filter((element:any)=>{
-     return(
-      subcategories?.find((sub:any)=>sub?.id === element?.id)
-     )
-   })?.sort((a:any,b:any)=>a?.children?.length - b?.children?.length)
-    const subSubcategoriesIds = subcategories?.map((test:any)=>test.subSubCategories).flat()
-    subcategoriesToShow?.forEach((test2:any)=> {
-     return(
-       test2.children = test2?.children.filter((test3:any)=>{
-         return(
-          subSubcategoriesIds.find((test4:any)=>test4 === test3?.id)
-         )
-       })
-     )
-   })
-
-   console.log(subcategoriesToShow)
 
  
 
@@ -49,36 +30,24 @@ const SubMenu = ({  name, subcategories,href, children, notCategoriesMenu, menuB
       <section  className={`${handles["desktop-submenu__content"]} absolute w-100`}>
       <div className={`${handles["desktop-submenu__content--list"]}`}>
         <Link to={href} className={`${handles["desktop-submenu__link-see-all"]}`}>Ver todo {name}</Link>
-        
-        {notCategoriesMenu?
-           orderAlphabetic(sliceArray(children,30))?.map((brand:any)=>{
-            return(
-              <div className={`${handles["desktop-submenu__content--card"]}`}>
-                <Link to={`/${brand.slug}`}>
-                  <h5 className={`${handles["not-categorie-element"]}`}>{brand.name}</h5>
-                </Link>
-              </div>
-            )
-          })
-        :
-        subcategoriesToShow?.map(({name, children, href}:SubMenuProps)=>{
+
+        {menuItems?.map(({name, subItems, href}:any)=>{
           return(
             <div className={`${handles["desktop-submenu__content--card"]}`}>
               <Link to={href}>
-                {children.length > 0 ?<h5 className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</h5>: <li className={`${handles["desktop-submenu__subcategory--element"]}`}>{name}</li>}
+                <h5 className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</h5>
               </Link>
-             <SubSubMenu children={children}/>
+             <SubSubMenu subItems={subItems}/>
             </div>
           )
-        })
-        }
+        })}
+
       </div>
-      <div>
-        <a href={menuBanner?.link}>
+      <div className={`${handles["banner-container"]}`}>
+        <a className={`${handles["banner-content"]}`} href={menuBanner?.link}>
         <img src={menuBanner?.image} alt="Banner image" />
         <p className={`${handles["banner-text"]}`}>{menuBanner?.text}</p>
         </a>
-      
       </div>
         
     </section>

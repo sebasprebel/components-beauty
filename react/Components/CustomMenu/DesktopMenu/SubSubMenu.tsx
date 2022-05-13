@@ -1,7 +1,6 @@
 
 import React from 'react';
 import {Link} from "vtex.render-runtime"
-import {SubSubMenuProps, SubSubMenuItemProps} from "../../../typings/desktopMenu"
 import { useCssHandles } from 'vtex.css-handles'
 import "./styles.css"
 
@@ -9,12 +8,12 @@ import "./styles.css"
    "desktop-submenu__subcategory--element",
 ]
 
-const SubSubMenu = ({ children }:SubSubMenuProps) => {
+const SubSubMenu = ({ subItems }:any) => {
    const handles = useCssHandles(CSS_HANDLES)
   return (
      
     <ul>
-      {children?.map(({name, href}:SubSubMenuItemProps)=>{
+      {subItems?.map(({name, href}:any)=>{
         return(
           <li  key={href} className={`${handles["desktop-submenu__subcategory--element"]}`}>
             <Link to={href}>{name}</Link>

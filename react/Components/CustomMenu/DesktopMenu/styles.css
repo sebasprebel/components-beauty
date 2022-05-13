@@ -75,7 +75,7 @@ a{
 }
 
 .desktop-submenu__content{
-  width:1020px;
+  width:1080px;
   margin: 0 auto;
   display: flex;
   gap: 1rem;
@@ -84,13 +84,20 @@ a{
 .desktop-submenu__content img{
   display: block;
   width: 250px;
-  height: 327px;
   border-radius:12px;
   margin-top: 1rem;
 }
+.banner-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.banner-container{
+  display: flex;
+}
 
 .desktop__menu--nav{
-  width: 1020px;
+  width: 1080px;
   display: flex;
   justify-content: center;
 }
@@ -109,8 +116,9 @@ a{
 .desktop-submenu__content--list{
   display: flex;
   flex-direction: column;
-  padding-block:1.5rem;
+  padding-block:1rem;
   flex-wrap: wrap;
+  width:60%;
 }
 .desktop-submenu__content--card{
   margin-bottom: 0rem;
