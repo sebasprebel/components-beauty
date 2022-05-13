@@ -48,7 +48,8 @@
   },
   "seller-custom-cart":{
     "component": "SellerInfoCart"
+  },
+  "our-brands-custom":{
+    "component": "OurBrands"
   }
-
-  
 }
