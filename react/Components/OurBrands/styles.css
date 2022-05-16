@@ -18,8 +18,8 @@
 .brandList__container{
   display: flex;
   gap: 4rem;
-  margin-bottom: 4rem;
   padding-inline: 9rem;
+  padding-top: 4rem;
 }
 
 .brandList__letter{
@@ -71,4 +71,28 @@
   .brandList__letter{
     width: auto;
   }
+}
+
+
+.to-up-btn{
+  background-color: var(--main-color);
+  border-radius: 50%;
+  position:sticky;
+  bottom: 3rem;
+  right: 3rem;
+  width: 40px;
+  height: 40px;
+  padding: .5rem;
+  display: flex;
+}
+
+@media (max-width: 1025px) {
+  .to-up-btn{
+    bottom: 6rem;
+  }
+}
+
+.to-up-btn:hover{
+ border: 1px solid var(--black);
+
 }
