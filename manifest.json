@@ -1,7 +1,7 @@
 {
   "vendor": "prebel",
   "name": "components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "BeautyHolics Components",
   "description": "Components for the BeautyHolics store",
   "builders": {
