@@ -1,57 +1,128 @@
 
 import React, {useEffect, useState} from 'react';
-import colorSKU from "../../utils/colorSKU"
-import { useRuntime } from 'vtex.render-runtime'
+import { useProduct } from 'vtex.product-context'
 import {
   useSearchPage,
 } from 'vtex.search-page-context/SearchPageContext'
 
 const SKUColor = () => {
-  const {  searchQuery } = useSearchPage()
-  const { page, deviceInfo, route:{canonicalPath}} = useRuntime()
-  const [filterColors,setFilterColors] =useState([])
-  //  const [filterOpened,setFilterOpened] =useState(false)
-  const [productCardColors,setProductCardColors] =useState({
-    elements: [],
-    size:0
-  })
+   const searchContext = useSearchPage()
+   const {product}= useProduct()
 
-  typeof document === 'undefined'?
-    null
-  :
+   const [filterColors,setFilterColors] =useState([])
+   const [productCardColors,setProductCardColors] =useState([])
+   const [productColors,setProductColors] =useState([])
+
+
     useEffect(()=>{
-      page === "store.product"
-      ?
-        null
-      :
-      deviceInfo.type ==="desktop"
-      ?
-        setFilterColors(Array.from(document?.querySelectorAll(".vtex-search-result-3-x-filter__container--gama-colores .vtex-checkbox__label")))
-      :
-        setFilterColors(Array.from(document?.querySelectorAll(".vtex-search-result-3-x-accordionFilterOpen--gama-colores .vtex-checkbox__label")))
+
+      const productColorsList = product?.skuSpecifications?.filter((e:any)=>e?.field?.name ==="Tonos")[0]?.values
+      const listOfCardColors = searchContext?.searchQuery?.products?.map((e:any)=>{
+        return(
+          e?.properties.find((p:any)=>p?.name === "Tonos")?.values
+        )
+      })
+      const cardColors = listOfCardColors?.flat()
+
+      if(productColorsList){
+        setProductColors(productColorsList?.map((e:any)=>[e?.name,e?.name?.replace(/([.,#+~ñ[\](){}])/g,"-").toLowerCase()]))
+      }
+
+      if(cardColors){
+        setProductCardColors(cardColors?.map((e:any)=>[e,e?.replace(/([.,#+~ñ[\](){}])/g,"-").toLowerCase()]))
+      }
+      const colorsFilter = searchContext?.filters?.find((e:any)=> e?.key === "gama-colores")
+      if(colorsFilter){
+        setFilterColors(colorsFilter?.facets?.map((e:any)=> e?.name)?.filter((e:any)=> !!e).map((e:any)=>[e,e.replace(/([.,#+~ñ[\](){}])/g,"-").toLowerCase()]))
+      }
        
-    },[searchQuery])
+    },[searchContext, product])
 
-    useEffect(()=>{
-console.log(canonicalPath)
+    console.log(filterColors)
 
-      setProductCardColors({size:Array.from(document?.querySelectorAll(".vtex-store-components-3-x-skuSelectorItemTextValue")).length,
-         elements:Array.from(document?.querySelectorAll(".vtex-store-components-3-x-skuSelectorItemTextValue"))}) 
-    },[canonicalPath])
-
-
-    filterColors.forEach((e:any)=>{
-      colorSKU(e)
-    })
-    // filterColorsMobile.forEach((e:any)=>{
-    //   colorSKU(e)
-    // })
-    productCardColors.elements?.forEach((e:any)=>{
-      colorSKU(e)
-    })
+  return (
+    <>
+    <style>
+    {filterColors?.map((e:any)=>{
+      if(e[0].startsWith("#")){
+        return(
+          `.vtex-search-result-3-x-filterItem--${e[1]} .vtex-checkbox__label{
+            background:${e[0]};
+            }
   
-  return (<></>)
-}
+            .vtex-search-result-3-x-filterAccordionItemBox--${e[1]} .vtex-checkbox__label{
+              background:${e[0]};
+              }
+            
+          `
+        )
+      }else{
+        return(
+          `.vtex-search-result-3-x-filterItem--${e[1]} .vtex-checkbox__label{
+            background:url(/arquivos/${e[0]}.jpg) center no-repeat;
+            background-size: cover;
+            }
+  
+            .vtex-search-result-3-x-filterAccordionItemBox--${e[1]} .vtex-checkbox__label{
+              background:url(/arquivos/${e[0]}.jpg) center no-repeat;
+              background-size: cover;
+              }
+            
+          `
+        )
+      }
+      
+    })}
+  </style>
+
+  <style id="otro">
+    {productCardColors?.map((e:any)=>{
+       if(e[0].startsWith("#")){
+        return(
+          ` .vtex-store-components-3-x-skuSelectorItem-${e[1]} .vtex-store-components-3-x-skuSelectorItemTextValue{
+              background:${e[0]};
+              }
+          `
+        )
+       }
+      return(
+        ` .vtex-store-components-3-x-skuSelectorItem-${e[1]} . vtex-store-components-3-x-skuSelectorItemTextValue{
+          background:url(/arquivos/${e[0]}.jpg) center no-repeat;
+          background-size: cover;
+            }
+        `
+      )
+    })}
+  </style>
+  <style id="otro">
+    {productColors?.map((e:any)=>{
+      if(e[0].startsWith("#")){
+        return(
+          ` .vtex-store-components-3-x-skuSelectorItem-${e[1]} .vtex-store-components-3-x-skuSelectorItemTextValue{
+              background:${e[0]};
+              }
+          `
+        )
+      }else{
+        return(
+          ` .vtex-store-components-3-x-skuSelectorItem-${e[1]} .vtex-store-components-3-x-skuSelectorItemTextValue{
+            background:url(/arquivos/${e[0]}.jpg) center no-repeat;
+            background-size: cover;
+              }
+          `
+        )
+      }
+      
+    })}
+  </style>
+  
+  </>
+  
+  )
+  }
+
+  
+
 
 export default SKUColor
 
