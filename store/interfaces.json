@@ -51,5 +51,8 @@
   },
   "our-brands-custom":{
     "component": "OurBrands"
+  },
+  "danger-html": {
+    "component": "DangerHTML"
   }
 }
