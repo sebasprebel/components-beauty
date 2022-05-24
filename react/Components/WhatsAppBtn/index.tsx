@@ -22,7 +22,7 @@ const WhatsappButton = ({ logo, phone, message, width, height }: Props) => {
   return <>
     <div className= {`${handles["wpp-btn__container"]}`}>
       <a
-        href={`https://web.whatsapp.com/send?phone=${phone}&amp;amp;text=${formattedMessage}`}
+        href={`https://api.whatsapp.com/send?phone=${phone}&text=${formattedMessage}`}
         target="_blank"
         rel="noreferrer noopener"
       >
