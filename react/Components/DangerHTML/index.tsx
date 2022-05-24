@@ -22,8 +22,6 @@ const DangetHTML: StorefrontFunctionComponent<ContainerSectionProps> = ({
       .trim()
   }
 
-  console.log({fileCSS});
-  console.log({fileJS});
   return content ? (
     <>
       <div

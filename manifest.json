@@ -24,7 +24,8 @@
     "vtex.order-manager": "0.x",
     "vtex.order-items": "0.x",
     "vtex.product-list": "0.x",
-    "vtex.list-context": "0.x"
+    "vtex.list-context": "0.x",
+    "vtex.product-summary-context": "0.x"
   },
   "registries": [
     "smartcheckout"

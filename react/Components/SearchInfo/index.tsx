@@ -53,7 +53,7 @@ const SearchInfo = () => {
 
   },[selectedFacets])
   
-  console.log(dataToShow)
+
 
   return (
     <div className={`${handles["search-info__container"]}`}>

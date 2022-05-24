@@ -13,7 +13,6 @@ const ProductSpecUse = () => {
   const contentAttributes = specificationGroups?.find((specGroup:any)=>specGroup?.name=== "allSpecifications")
   const modeOfUse = contentAttributes?.specifications?.find((specGroup:any)=>specGroup?.name=== "Modo de Uso")
   const modeOfUseContent = modeOfUse?.values
-
   return (
      <div>
        {modeOfUseContent? modeOfUseContent?.map((value:any)=>{

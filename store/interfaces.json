@@ -54,5 +54,8 @@
   },
   "danger-html": {
     "component": "DangerHTML"
+  },
+  "whatsapp-btn": {
+    "component": "WhatsAppBtn"
   }
 }

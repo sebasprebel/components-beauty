@@ -16,7 +16,6 @@ const sellerList:any= {
 
 const SellerInfoCart = () => {
   const {item} = useItemContext()
-  console.log(item)
 
 
      
