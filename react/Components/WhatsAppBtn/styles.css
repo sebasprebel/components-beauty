@@ -1,0 +1,6 @@
+.wpp-btn__container{
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  z-index: 999;
+}
