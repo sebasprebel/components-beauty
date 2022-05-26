@@ -24,7 +24,7 @@ const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack, highl
     setBack(false)
   }
 
-  console.log(highlightTitle)
+
   return (
       <section style={{display:`${back?"block":"none"}`}} className={`${handles["subMenu__container"]}`}>
       <div>

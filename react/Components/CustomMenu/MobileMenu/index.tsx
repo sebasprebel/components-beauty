@@ -66,6 +66,7 @@ const MobileMenu = (navItems:any) => {
     setBack2(true)
   }
 
+
   return (
     <section className={`w-100 ${handles["mobile__menu-container"]}`}>
       <h3 className={`${handles["mobile__categories--title"]}`}>Categorías</h3>
