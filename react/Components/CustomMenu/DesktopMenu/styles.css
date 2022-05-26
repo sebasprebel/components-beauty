@@ -97,14 +97,15 @@ a{
 }
 
 .desktop__menu--nav{
-  width: 1080px;
+  width: 1190px;
   display: flex;
   justify-content: center;
 }
 
 .desktop__menu--list{
-  gap: 1.5rem;
+  gap: 1rem;
   width: 100%;
+  justify-content:space-between;
 }
 
 .desktop-submenu__link-see-all{
