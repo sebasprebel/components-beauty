@@ -10,7 +10,7 @@ const CSS_HANDLES = [
   "highlight"
 ]
 
-const MenuItem = ({id, menuBanner, menuItems, name, isHighlight,isLink, href}: any) => {
+const MenuItem = ({id, menuBanner, menuItems, name, isHighlight,isLink, href, highlightTitle}: any) => {
    const handles = useCssHandles(CSS_HANDLES)
 
   return (
@@ -20,7 +20,8 @@ const MenuItem = ({id, menuBanner, menuItems, name, isHighlight,isLink, href}: a
         <Link to={href}>{name}</Link>
         {menuItems?.length > 0 ?<SubMenu
           menuBanner={menuBanner} 
-          name={name} 
+          name={name}
+          highlightTitle={highlightTitle}
           href={href}
           menuItems={menuItems}/>: null}
     </li>
@@ -29,7 +30,8 @@ const MenuItem = ({id, menuBanner, menuItems, name, isHighlight,isLink, href}: a
           {name}
           {menuItems?.length > 0 ?<SubMenu
             menuBanner={menuBanner} 
-            name={name} 
+            name={name}
+            highlightTitle={highlightTitle}
             href={href}
             menuItems={menuItems}/>: null}
       </li>

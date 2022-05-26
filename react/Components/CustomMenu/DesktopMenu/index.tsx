@@ -12,12 +12,11 @@ const CSS_HANDLES = [
 
 const DesktopMenu = (navItems:any) => {
   const handles = useCssHandles(CSS_HANDLES)
-
   return (
     <div className={`relative flex justify-center w-100 ${handles["desktop__menu"]}`}>
       <nav className={`${handles["desktop__menu--nav"]}`}>
         <ul className={`${handles["desktop__menu--list"]} flex`}>
-          {navItems?.navItems?.length > 0 ? navItems?.navItems?.map(({id, menuItems,menuBanner, name, isHighlight,isLink, href}: any) => {
+          {navItems?.navItems?.length > 0 ? navItems?.navItems?.map(({id, menuItems,menuBanner, name, isHighlight,isLink, href, highlightTitle}: any) => {
             return (
                <MenuItem
                 key={id}
@@ -28,6 +27,7 @@ const DesktopMenu = (navItems:any) => {
                 isLink={isLink}
                 href={href}
                 menuItems={menuItems}
+                highlightTitle={highlightTitle}
               />
             )
           }):null}
@@ -63,6 +63,10 @@ DesktopMenu.schema = {
           },
           isLink:{
             title: 'El ítem redirige a una página',
+            type: 'boolean'
+          },
+          highlightTitle:{
+            title: 'El título del submenú es destacado',
             type: 'boolean'
           },
           menuItems:{

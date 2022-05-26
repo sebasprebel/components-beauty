@@ -61,3 +61,11 @@ li{
   color: var(--main-color);
   font-family: var(--font-poppins-semibold);
 }
+
+.highlightTitle__mobile{
+  background: #FFA9BE;
+  border-radius: 24px;
+  padding: 3px .3rem;
+  text-align: center;
+  font-weight: 600;
+}

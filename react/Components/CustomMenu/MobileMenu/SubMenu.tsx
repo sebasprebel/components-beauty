@@ -11,11 +11,12 @@ const CSS_HANDLES = [
   "isActive",
   "hide",
   "mobile__see-all",
-  "back-btn"
+  "back-btn",
+  "highlightTitle__mobile"
 ]
 
 
-const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack}:any) => {
+const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack, highlightTitle}:any) => {
   const handles = useCssHandles(CSS_HANDLES)
 
 
@@ -23,6 +24,7 @@ const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack}:any) 
     setBack(false)
   }
 
+  console.log(highlightTitle)
   return (
       <section style={{display:`${back?"block":"none"}`}} className={`${handles["subMenu__container"]}`}>
       <div>
@@ -31,7 +33,7 @@ const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack}:any) 
           <h3 className={`${handles["mobile__categories--title"]}`}>{name} </h3>
         </div>
         
-        <Link to={href} className={`${handles["mobile__see-all"]}`}>Ver todo {name}</Link>
+        <Link to={href} className={`${handles["mobile__see-all"]} ${highlightTitle?handles["highlightTitle__mobile"]:""}`}>Ver todo {name}</Link>
         {subMenuToShow?.menuItems?.map(({name, id, subItems, href}:any)=>{
           return(
             <div className="flex justify-between">

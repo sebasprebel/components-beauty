@@ -171,3 +171,14 @@ a{
 .banner-text:hover{
   text-decoration: underline;
 }
+
+.highlightTitle{
+  background: #FFA9BE;
+  border-radius: 24px;
+  padding: 3px .3rem;
+  text-align: center;
+}
+
+.highlightTitle:hover{
+  background:var(--hard-pink);
+}
