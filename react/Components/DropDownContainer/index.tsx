@@ -1,11 +1,6 @@
 import React, {useState} from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
-type DropDownContainerProps = {
-  title: string
-  content: string
-  children: React.ReactNode
-}
 
 const CSS_HANDLES = [
   'dropDown__container',
@@ -15,15 +10,16 @@ const CSS_HANDLES = [
 ]
 
 const DropDownContainer = ({
-
-}: DropDownContainerProps) => {
+ title,
+ content
+}: any) => {
   const handles = useCssHandles(CSS_HANDLES)
   const {dropDown__container,dropDown__title,dropDown__content, dropDown__button } = handles
-
+  console.log(title, content)
   const [showMore, setShowMore] = useState<boolean>(false)
-   const numberOfWordsBase = 10;
-  const text = "Sin duda alguna nuestro make up es uno de los pasos más importantes en nuestra rutina diaria; desde el maquillaje para ojos hasta los accesorios que necesitas para verte fabulosa. ¿Lo mejor? Lo encuentras todo en un solo lugar."
-  const numberOfWordsContent = text.split(" ").length
+  const numberOfWordsBase = 15;
+
+  const numberOfWordsContent = content?.split(" ")?.length
   const handleSetShowMore= ()=>{
     setShowMore(!showMore)
   }
@@ -32,13 +28,13 @@ const DropDownContainer = ({
 
   return (
     <div>
-    <div className={`${dropDown__container}`} style={{height:`${comparison?"auto":showMore?"auto":"80px"}`}}>
-        <h3 className={`${dropDown__title}`}> Conoce nuestro maquillaje</h3>
-        <p className={`${dropDown__content}`}>
-          {text}
+    <div className={`${dropDown__container}`} >
+        <h3 className={`${dropDown__title}`}>{title}</h3>
+        <p className={`${dropDown__content}`} style={{height:`${comparison?"auto":showMore?"auto":"15px"}`}}>
+          {content}
         </p>
     </div>
-    <div onClick={handleSetShowMore} className={`${dropDown__button}`}>{showMore?"Ver menos ▲":"Ver más ▼"}</div>
+    <div onClick={handleSetShowMore} className={`${dropDown__button}`} style={{display:`${comparison?"none":"block"}`}}>{showMore?"Ver menos ▲":"Ver más ▼"}</div>
     </div>
     
   )
