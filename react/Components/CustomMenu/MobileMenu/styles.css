@@ -57,6 +57,10 @@ li{
   transition: all 1s ease-in-out;
 }
 
+.subMenu__container li{
+  margin-bottom: 1rem;
+}
+
 .highLight-mobile{
   color: var(--main-color);
   font-family: var(--font-poppins-semibold);

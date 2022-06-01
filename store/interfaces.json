@@ -57,5 +57,8 @@
   },
   "whatsapp-btn": {
     "component": "WhatsAppBtn"
+  },
+  "pum": {
+    "component": "Pum"
   }
 }
