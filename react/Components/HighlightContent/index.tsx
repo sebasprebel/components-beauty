@@ -22,7 +22,10 @@ const HighlightContent = ({
 }: HighlightContentProps) => {
   const handles = useCssHandles(CSS_HANDLES)
 
+
   return items ? (
+    items.length>0 
+    ?
     <section className={`${handles.highlightContent} ${classes || ''}`}>
       {sliderMode ? (
         <SliderLayout {...sliderProps}>
@@ -52,6 +55,9 @@ const HighlightContent = ({
         ))
       )}
     </section>
+    :
+    null
+    
   ) : null
 }
 

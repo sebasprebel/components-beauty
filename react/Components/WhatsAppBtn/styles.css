@@ -4,3 +4,9 @@
   right: 1rem;
   z-index: 999;
 }
+
+@media (max-width: 1025px){
+  .wpp-btn__container{
+    bottom: 9rem;
+  }
+}

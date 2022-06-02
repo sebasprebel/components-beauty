@@ -22,17 +22,17 @@ const PUM = ({ classes, specificationName }: PUM) => {
   
   useEffect(() => {
     const specifications =
-      productContextValue?.product?.specificationGroups.find(
+      productContextValue?.product?.specificationGroups?.find(
         (e:any) => e.name === 'allSpecifications'
       )
 
-    const contenido = specifications?.specifications.find(
+    const contenido = specifications?.specifications?.find(
       (e:any) => e.name === specificationName
     )
     
     console.log(contenido)
 
-    const valueUnit: string[] | undefined = contenido?.values[0].split(',')
+    const valueUnit: string[] | undefined = contenido?.values[0]?.split(',')
     const sellingPrice =
       productContextValue?.selectedItem?.sellers[0]?.commertialOffer?.Price
 
@@ -44,7 +44,6 @@ const PUM = ({ classes, specificationName }: PUM) => {
     if (valueUnit && sellingPrice) {
       const value = valueSanitized
       const unit = unitySanitized
-      // const pum = Math.floor((sellingPrice / value) * 100) / 10
       setContent({ value: value, unit })
     }
   }, [productContextValue])
@@ -52,9 +51,9 @@ const PUM = ({ classes, specificationName }: PUM) => {
 
   return (
     <div>
-      {content && (
+      {content?.value && (
         <p className={`${handles.PUM} ${classes || ''}`}>
-          {`$${content?.value} por ${content?.unit}`}
+          <b>PUM: </b>{`$${content?.value} por ${content?.unit}`}
         </p>
       )}
     </div>
