@@ -36,8 +36,8 @@ const PUM = ({ classes, specificationName }: PUM) => {
     const sellingPrice =
       productContextValue?.selectedItem?.sellers[0]?.commertialOffer?.Price
 
-    const unity:any = (valueUnit?.[0].split(":"))?.[1]
-    const value:any = (valueUnit?.[1].split(":"))?.[1]
+    const unity:any = (valueUnit?.[0]?.split(":"))?.[1]
+    const value:any = (valueUnit?.[1]?.split(":"))?.[1]
     const unitySanitized = unity?.replace(/(["])/g, '')
     const valueSanitized = value?.replace(/(["])/g, '')
 
