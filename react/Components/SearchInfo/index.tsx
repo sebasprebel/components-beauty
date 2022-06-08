@@ -34,8 +34,8 @@ const SearchInfo = () => {
       categorie?.children
     )
   }).flat()
-  const facetsSelected = selectedFacets?.filter((facet:any)=>facet.key=== "c")
-  const currentCategory = facetsSelected[facetsSelected.length-1]
+  const facetsSelected = selectedFacets?.filter((facet:any)=>facet?.key=== "c")
+  const currentCategory = facetsSelected[facetsSelected?.length-1]
   const {page} = useRuntime()
 
   useEffect(()=>{
@@ -43,11 +43,11 @@ const SearchInfo = () => {
   if(page === "store.search#category"){
     setDataToShow(categories?.filter((categorie:any)=>{
 
-      return categorie?.name.toLowerCase()===currentCategory?.value.toLowerCase()
+      return categorie?.name?.toLowerCase()===currentCategory?.value?.toLowerCase()
     })[0])
   }else{
     if(page === "store.search#subcategory"){
-      setDataToShow(subCategories?.filter((categorie:any)=>categorie?.name.toLowerCase()===currentCategory?.value.toLowerCase())[0])
+      setDataToShow(subCategories?.filter((categorie:any)=>categorie?.name?.toLowerCase()===currentCategory?.value?.toLowerCase())[0])
     }
   }
 

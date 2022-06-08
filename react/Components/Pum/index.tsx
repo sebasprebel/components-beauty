@@ -30,7 +30,6 @@ const PUM = ({ classes, specificationName }: PUM) => {
       (e:any) => e.name === specificationName
     )
     
-    console.log(contenido)
 
     const valueUnit: string[] | undefined = contenido?.values[0]?.split(',')
     const sellingPrice =
@@ -49,6 +48,14 @@ const PUM = ({ classes, specificationName }: PUM) => {
   }, [productContextValue])
 
 
+  useEffect(()=>{
+    let header:any = document?.querySelector(".vtex-sticky-layout-0-x-container")
+    header.style.position = "static"
+    return ( ()=>{
+      header.style.position = "fixed"
+   });
+  },[])
+  
   return (
     <div>
       {content?.value && (

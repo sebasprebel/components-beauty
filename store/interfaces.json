@@ -40,9 +40,6 @@
   "search-info-custom":{
     "component": "SearchInfo"
   },
-  "addi":{
-    "component": "Addi"
-  },
   "seller-custom":{
     "component": "SellerInfo"
   },
