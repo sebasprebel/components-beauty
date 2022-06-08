@@ -50,12 +50,12 @@ const PUM = ({ classes, specificationName }: PUM) => {
 
   useEffect(()=>{
     let header:any = document?.querySelector(".vtex-sticky-layout-0-x-container")
-    header.style.position = "static"
+    header.style.position = "relative"
     return ( ()=>{
       header.style.position = "fixed"
    });
   },[])
-  
+
   return (
     <div>
       {content?.value && (
