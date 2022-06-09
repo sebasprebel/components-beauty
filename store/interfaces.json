@@ -57,5 +57,8 @@
   },
   "pum": {
     "component": "Pum"
+  },
+  "slider-banner-with-html": {
+    "component": "SliderBannerWithHTML"
   }
 }

@@ -25,7 +25,7 @@ const DangetHTML: StorefrontFunctionComponent<ContainerSectionProps> = ({
   return content ? (
     <>
       <div
-        className={`${handles.containerSection} ${classes}`}
+        className={`${handles.containerSection} ${classes} absolute`}
         dangerouslySetInnerHTML={{
           __html: minify(content),
         }}
