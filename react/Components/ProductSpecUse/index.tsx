@@ -9,8 +9,8 @@ const CSS_HANDLES = ['spec__content']
 const ProductSpecUse = () => {
 
   const handles = useCssHandles(CSS_HANDLES)
-  const {product:{specificationGroups}} = useProduct()
-  const contentAttributes = specificationGroups?.find((specGroup:any)=>specGroup?.name=== "allSpecifications")
+  const {product} = useProduct()
+  const contentAttributes = product?.specificationGroups?.find((specGroup:any)=>specGroup?.name=== "allSpecifications")
   const modeOfUse = contentAttributes?.specifications?.find((specGroup:any)=>specGroup?.name=== "Modo de Uso")
   const modeOfUseContent = modeOfUse?.values
   return (
