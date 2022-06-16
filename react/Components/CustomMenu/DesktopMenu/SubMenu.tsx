@@ -23,18 +23,17 @@ import "./styles.css"
 
 const SubMenu = ({  name, menuItems,href,menuBanner, highlightTitle}:any) => {
    const handles = useCssHandles(CSS_HANDLES)
-
   return (
       <div className={`${handles["desktop-submenu__container"]} dn absolute w-100`}>
       <section  className={`${handles["desktop-submenu__content"]} absolute w-100`}>
       <div className={`${handles["desktop-submenu__content--list"]}`}>
-        <Link to={href} className={`${handles["desktop-submenu__link-see-all"]} ${highlightTitle?handles["highlightTitle"]:""}`}>Ver todo {name}</Link>
+        <Link to={href} className={`${handles["desktop-submenu__link-see-all"]} ${highlightTitle?handles["highlightTitle"]:""}`}>{name==="Marcas"?`Ver todas las ${name}`:`Ver todo ${name}`}</Link>
 
         {menuItems?.map(({name, subItems, href}:any)=>{
           return(
             <div className={`${handles["desktop-submenu__content--card"]}`}>
               <Link to={href}>
-                <h5 className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</h5>
+                <p className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</p>
               </Link>
              <SubSubMenu subItems={subItems}/>
             </div>

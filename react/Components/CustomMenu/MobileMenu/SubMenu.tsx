@@ -33,7 +33,7 @@ const SubMenu = ({ subMenuToShow, name, href,handleShowSub, back, setBack, highl
           <h3 className={`${handles["mobile__categories--title"]}`}>{name} </h3>
         </div>
         
-        <Link to={href} className={`${handles["mobile__see-all"]} ${highlightTitle?handles["highlightTitle__mobile"]:""}`}>Ver todo {name}</Link>
+        <Link to={href} className={`${handles["mobile__see-all"]} ${highlightTitle?handles["highlightTitle__mobile"]:""}`}>{name==="Marcas"?`Ver todas las ${name}`:`Ver todo ${name}`}</Link>
         {subMenuToShow?.menuItems?.map(({name, id, subItems, href}:any)=>{
           return(
             <div className="flex justify-between">

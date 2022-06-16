@@ -15,7 +15,6 @@ const DropDownContainer = ({
 }: any) => {
   const handles = useCssHandles(CSS_HANDLES)
   const {dropDown__container,dropDown__title,dropDown__content, dropDown__button } = handles
-  console.log(title, content)
   const [showMore, setShowMore] = useState<boolean>(false)
   const numberOfWordsBase = 15;
 
