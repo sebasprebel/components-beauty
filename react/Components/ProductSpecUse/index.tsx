@@ -8,6 +8,13 @@ const CSS_HANDLES = ['spec__content']
 
 const ProductSpecUse = () => {
 
+  const minify = (s: string) => {
+    return s
+      ?.replace(/>[\r\n ]+</g, '><')
+      ?.replace(/(<.*?>)|\s+/g, (_: string, $1: string) => $1 || ' ')
+      ?.trim()
+  }
+
   const handles = useCssHandles(CSS_HANDLES)
   const {product} = useProduct()
   const contentAttributes = product?.specificationGroups?.find((specGroup:any)=>specGroup?.name=== "allSpecifications")
@@ -15,11 +22,13 @@ const ProductSpecUse = () => {
   const modeOfUseContent = modeOfUse?.values
   return (
      <div>
-       {modeOfUseContent? modeOfUseContent?.map((value:any)=>{
+       {modeOfUseContent? modeOfUseContent?.map((value:string)=>{
          return(
-          <div className={`${handles["spec__content"]}`}>
-            {value && value}
-          </div>
+          <div dangerouslySetInnerHTML={{
+            __html: minify( `${value}`
+              ),
+          }} className={`${handles["spec__content"]}`}>
+  </div>
          )
        }):<p>Este producto no tiene modo de uso especificado.</p>}
      </div>
