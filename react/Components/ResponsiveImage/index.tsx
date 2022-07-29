@@ -78,7 +78,7 @@ const ResponsiveImage = ({
     <div className={handles.responsiveImageContainer} ref={ref}>
       {link ? (
         <Link
-          {...(external ? { target: '_blank', rel: 'noreferrer' } : null)}
+          {...(external ? { target: '_blank' } : null)}
           to={link}
           className={`${handles.responsiveImageLink} db`}
           rel="noreferrer"

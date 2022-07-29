@@ -1,0 +1,79 @@
+name: PR actions
+'on':
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            https://www.beautyholics.com/?workspace=lighthouse
+          budgetPath: ./budget.json # test performance budgets
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+  danger-ci:
+    name: Danger CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+        env:
+          RUNNER_TEMP: /tmp
+      - name: Danger CI
+        uses: vtex/danger@master
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          REQUIRE_CHANGELOG_VERSION: false
+  io-app-test:
+    name: IO app test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+        env:
+          RUNNER_TEMP: /tmp
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: 'echo "::set-output name=dir::$(yarn cache dir)"'
+      - uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
+          key: '${{ runner.os }}-yarn-${{ hashFiles(''**/yarn.lock'') }}'
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+        env:
+          RUNNER_TEMP: /tmp
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: 'echo "::set-output name=dir::$(yarn cache dir)"'
+      - uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
+          key: '${{ runner.os }}-yarn-${{ hashFiles(''**/yarn.lock'') }}'
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: yarn install
+        run: yarn install --frozen-lockfile
+      - name: Lint project
+        uses: vtex/action-lint@master
