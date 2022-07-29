@@ -1,23 +1,25 @@
 import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import "./styles.css"
+import './styles.css'
 
 export type CopyrightProps = {
   text: string
 }
 
-const CSS_HANDLES = [
-  'copyright__text',
-]
+const CSS_HANDLES = ['copyright__text']
 
-const Copyright = ({ text ="Beautyholics Derechos reservados" }: CopyrightProps) => {
+const Copyright = ({
+  text = 'Beautyholics Derechos reservados',
+}: CopyrightProps) => {
   const handles = useCssHandles(CSS_HANDLES)
-  const {copyright__text } = handles
 
   const date = new Date()
-  const actualYear = date.getFullYear()  
+  const actualYear = date.getFullYear()
+
   return (
-  <p className={`${copyright__text}`}>{text} {actualYear}</p>
+    <p className={`${handles.copyright__text}`}>
+      {text} {actualYear}
+    </p>
   )
 }
 
@@ -29,7 +31,7 @@ Copyright.schema = {
       title: 'Texto',
       description: 'Texto que aparecerá en el copyright',
       type: 'string',
-    }
+    },
   },
 }
 

@@ -1,3 +1,3 @@
-import SliderBannerWithHTML from "./Components/SliderBannerWithHTML"
+import SliderBannerWithHTML from './Components/SliderBannerWithHTML'
 
 export default SliderBannerWithHTML

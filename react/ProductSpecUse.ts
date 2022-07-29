@@ -1,3 +1,3 @@
-import ProductSpecUse from './Components/ProductSpecUse';
+import ProductSpecUse from './Components/ProductSpecUse'
 
 export default ProductSpecUse

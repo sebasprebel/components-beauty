@@ -1,3 +1,3 @@
-import OurBrands from './Components/OurBrands';
+import OurBrands from './Components/OurBrands'
 
 export default OurBrands

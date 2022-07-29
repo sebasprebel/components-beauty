@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- added CI process
+- Fix esLint and Lighthouse performance
+
 ## [0.1.18] (2017-06-20)
 
 ### Added

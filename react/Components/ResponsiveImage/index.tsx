@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -9,6 +9,16 @@ type ResponsiveImageProps = {
   link: string
   external: boolean
   alt: string
+  maxSize?: string
+  elementSizes?: {
+    mobile: Size
+    desktop: Size
+  }
+}
+
+type Size = {
+  height: string
+  width: string
 }
 
 const CSS_HANDLES = [
@@ -21,59 +31,63 @@ const ResponsiveImage = ({
   mobileImage,
   desktopImage,
   breakpoint = '768px',
+  maxSize = '1420',
   link,
   external,
   alt = '',
+  elementSizes = {
+    mobile: {
+      height: '450px',
+      width: '350px',
+    },
+    desktop: {
+      height: '450px',
+      width: '1024px',
+    },
+  },
 }: ResponsiveImageProps) => {
   const handles = useCssHandles(CSS_HANDLES)
+  const ref = useRef<HTMLDivElement>(null)
 
-  return link ? (
-    <div className={handles.responsiveImageContainer}>
-      {external ? (
-        <a
-          href={link}
-          target="_blank"
-          rel="noreferrer"
-          className={`${handles.responsiveImageLink} db`}
-        >
-          <picture className="db">
-            <source
-              media={`(min-width: ${breakpoint})`}
-              srcSet={desktopImage}
-            />
-            <img
-              src={mobileImage}
-              alt={alt}
-              className={`${handles.responsiveImage} db w-100`}
-            />
-          </picture>
-        </a>
-      ) : (
-        <Link to={link} className={`${handles.responsiveImageLink} db`}>
-          <picture className="db">
-            <source
-              media={`(min-width: ${breakpoint})`}
-              srcSet={desktopImage}
-            />
-            <img
-              src={mobileImage}
-              alt={alt}
-              className={`${handles.responsiveImage} db w-100`}
-            />
-          </picture>
-        </Link>
-      )}
-    </div>
-  ) : (
-    <div className={handles.responsiveImageContainer}>
+  const getWidth = React.useMemo(() => {
+    return (
+      Math.round(ref.current?.clientWidth ?? 0) ??
+      breakpoint.replace(/px|rem|pt/, '')
+    )
+  }, [ref, breakpoint])
+
+  const PictureElement = () => {
+    return (
       <picture className="db">
-        <source media={`(min-width: ${breakpoint})`} srcSet={desktopImage} />
+        <source
+          media={`(min-width: ${breakpoint})`}
+          srcSet={`${desktopImage}?width=${maxSize}&aspect=true`}
+          {...elementSizes?.mobile}
+        />
         <img
-          src={mobileImage}
+          srcSet={`${mobileImage}?width=${getWidth}&aspect=true`}
           alt={alt}
-          className={`${handles.responsiveImage} db w-100`}
+          className={`${handles.responsiveImage} db w-100 h-auto`}
+          {...elementSizes?.desktop}
         />
       </picture>
+    )
+  }
+
+  return (
+    <div className={handles.responsiveImageContainer} ref={ref}>
+      {link ? (
+        <Link
+          {...(external ? { target: '_blank' } : null)}
+          to={link}
+          className={`${handles.responsiveImageLink} db`}
+          rel="noreferrer"
+        >
+          <PictureElement />
+        </Link>
+      ) : (
+        <PictureElement />
+      )}
     </div>
   )
 }

@@ -38,3 +38,7 @@ build
 lerna-debug.log
 yarn-error.log
 *.orig
+
+# Locks files
+yarn.lock
+package-lock.json

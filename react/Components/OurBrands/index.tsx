@@ -1,49 +1,58 @@
-import React,{useEffect} from 'react'
-import HeaderBrands from "./HeaderBrands"
-import LetterList from "./LetterList"
-import getBrands from "../../Queries/getBrands.gql"
+import React, { useEffect } from 'react'
 import { useQuery } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
 
+import HeaderBrands from './HeaderBrands'
+import LetterList from './LetterList'
+import getBrands from '../../Queries/getBrands.gql'
 
+const CSS_HANDLES = ['to-up-btn']
 
-
-const CSS_HANDLES = [
-  'to-up-btn'
-]
-
-let alphabet = String.fromCharCode(...Array(123).keys()).slice(97).toUpperCase().split('')
+const alphabet = String.fromCharCode(...Array(123).keys())
+  .slice(97)
+  .toUpperCase()
+  .split('')
 
 const OurBrands = () => {
   const handles = useCssHandles(CSS_HANDLES)
-  const {data} = useQuery(getBrands)
-  
-  const activeBrands = data?.brands?.filter((brand:any)=> brand?.active === true)
+  const { data } = useQuery(getBrands)
 
-  const handleUp =()=>{
+  const activeBrands = data?.brands?.filter(
+    (brand: any) => brand?.active === true
+  )
+
+  const handleUp = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 
-  useEffect(()=>{
-    let header:any = document?.querySelector(".vtex-sticky-layout-0-x-container")
-    header.style.position = "static"
-    return ( ()=>{
-      header.style.position = "fixed"
-   });
-  },[])
+  useEffect(() => {
+    const header: any = document?.querySelector(
+      '.vtex-sticky-layout-0-x-container'
+    )
+
+    header.style.position = 'static'
+
+    return () => {
+      header.style.position = 'fixed'
+    }
+  }, [])
 
   return (
     <>
-    <HeaderBrands/>
-    {alphabet.map((letter:any)=><LetterList letter={letter} list={activeBrands}/>)}
-    <a href="#" onClick={handleUp} className={`${handles["to-up-btn"]}`}>
-      <img src="/arquivos/up-arrow-white.svg"></img>
-    </a>
+      <HeaderBrands />
+      {alphabet.map((letter: any, i: number) => (
+        <LetterList key={`alphabet_${i}`} letter={letter} list={activeBrands} />
+      ))}
+      <button
+        onClick={handleUp}
+        className={`${handles['to-up-btn']} bg-transparent bn`}
+      >
+        <img src="/arquivos/up-arrow-white.svg" alt="up" />
+      </button>
     </>
-   
   )
 }
 

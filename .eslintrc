@@ -1,4 +1,9 @@
 {
   "extends": "vtex",
-  "root": true
+  "root": true,
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
