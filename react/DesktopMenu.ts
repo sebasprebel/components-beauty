@@ -1,3 +1,3 @@
-import DesktopMenu from './Components/CustomMenu/DesktopMenu';
+import DesktopMenu from './Components/CustomMenu/DesktopMenu'
 
 export default DesktopMenu

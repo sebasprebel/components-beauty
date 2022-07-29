@@ -19,48 +19,53 @@ const PUM = ({ classes, specificationName }: PUM) => {
   const productContextValue = useProduct()
   const [content, setContent] = useState<Content>()
 
-  
   useEffect(() => {
     const specifications =
       productContextValue?.product?.specificationGroups?.find(
-        (e:any) => e.name === 'allSpecifications'
+        (e: any) => e.name === 'allSpecifications'
       )
 
     const contenido = specifications?.specifications?.find(
-      (e:any) => e.name === specificationName
+      (e: any) => e.name === specificationName
     )
-    
 
     const valueUnit: string[] | undefined = contenido?.values[0]?.split(',')
     const sellingPrice =
       productContextValue?.selectedItem?.sellers[0]?.commertialOffer?.Price
 
-    const unity:any = (valueUnit?.[0]?.split(":"))?.[1]
-    const value:any = (valueUnit?.[1]?.split(":"))?.[1]
+    const unity: any = valueUnit?.[0]?.split(':')?.[1]
+    let value: any = valueUnit?.[1]?.split(':')?.[1]
     const unitySanitized = unity?.replace(/(["])/g, '')
     const valueSanitized = value?.replace(/(["])/g, '')
 
-    if (valueUnit && sellingPrice) {
-      const value = valueSanitized
-      const unit = unitySanitized
-      setContent({ value: value, unit })
+    if (!valueUnit || !sellingPrice) {
+      return
     }
+
+    value = valueSanitized
+    const unit = unitySanitized
+
+    setContent({ value, unit })
   }, [productContextValue])
 
+  useEffect(() => {
+    const header: any = document?.querySelector(
+      '.vtex-sticky-layout-0-x-container'
+    )
 
-  useEffect(()=>{
-    let header:any = document?.querySelector(".vtex-sticky-layout-0-x-container")
-    header.style.position = "relative"
-    return ( ()=>{
-      header.style.position = "fixed"
-   });
-  },[])
+    header.style.position = 'relative'
+
+    return () => {
+      header.style.position = 'fixed'
+    }
+  }, [])
 
   return (
     <div>
       {content?.value && (
         <p className={`${handles.PUM} ${classes || ''}`}>
-          <b>PUM: </b>{`$${content?.value} por ${content?.unit}`}
+          <b>PUM: </b>
+          {`$${content?.value} por ${content?.unit}`}
         </p>
       )}
     </div>

@@ -1,37 +1,32 @@
-export type MenuDesktopProps={
+export type MenuDesktopProps = {
   departments: DepartmentsProps[]
-;}
+}
 
-export type DepartmentsProps={
+export type DepartmentsProps = {
   categories: CategoriesProps[]
-  banner : BannerProps
-};
+  banner: BannerProps
+}
 
-export type MenuItemProps={
+export type MenuItemProps = {
   name: string
   href: string
   id: number
-  handleClick?:any
-  isLinkItem?:boolean
-  isHighlight?:boolean
-  isActive?:boolean
-};
+  handleClick?: any
+  isLinkItem?: boolean
+  isHighlight?: boolean
+  isActive?: boolean
+}
 
-export type SubCategoriesProps={
+export type SubCategoriesProps = {
   name: string
   children: any
   subMenuToShow: any
   href: string
-  handleLeave:any
+  handleLeave: any
 }
 
-export type submenuItemsProps={
+export type BannerProps = {
   name: string
   href: string
-}
-
-export type BannerProps={
-  name: string
-  href: string
-  image:string
+  image: string
 }

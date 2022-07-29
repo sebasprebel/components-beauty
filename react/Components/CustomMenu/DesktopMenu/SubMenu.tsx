@@ -1,57 +1,79 @@
-
-import React from 'react';
-import {Link} from "vtex.render-runtime"
+import React from 'react'
+import { Link } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-import SubSubMenu from "./SubSubMenu"
-import "./styles.css"
 
- const CSS_HANDLES = [
-   'desktop-submenu__container',
-   'desktop-submenu__content',
-   "desktop-submenu__link-see-all",
-   "desktop-submenu__content--list",
-   "desktop-submenu__subcategory--title",
-   "desktop-submenu__content--card",
-   "desktop-submenu__subcategory--element",
-   "desktop-submenu__overflow-layer",
-   "not-categorie-element",
-   "banner-text",
-   "banner-container",
-   "banner-content",
-   "highlightTitle"
+import SubSubMenu from './SubSubMenu'
+import './styles.css'
+
+const CSS_HANDLES = [
+  'desktop-submenu__container',
+  'desktop-submenu__content',
+  'desktop-submenu__link-see-all',
+  'desktop-submenu__content--list',
+  'desktop-submenu__subcategory--title',
+  'desktop-submenu__content--card',
+  'desktop-submenu__subcategory--element',
+  'desktop-submenu__overflow-layer',
+  'not-categorie-element',
+  'banner-text',
+  'banner-container',
+  'banner-content',
+  'highlightTitle',
 ]
 
-const SubMenu = ({  name, menuItems,href,menuBanner, highlightTitle}:any) => {
-   const handles = useCssHandles(CSS_HANDLES)
+const SubMenu = ({
+  name,
+  menuItems,
+  href,
+  menuBanner,
+  highlightTitle,
+}: any) => {
+  const handles = useCssHandles(CSS_HANDLES)
+
   return (
-      <div className={`${handles["desktop-submenu__container"]} dn absolute w-100`}>
-      <section  className={`${handles["desktop-submenu__content"]} absolute w-100`}>
-      <div className={`${handles["desktop-submenu__content--list"]}`}>
-        <Link to={href} className={`${handles["desktop-submenu__link-see-all"]} ${highlightTitle?handles["highlightTitle"]:""}`}>{name==="Marcas"?`Ver todas las ${name}`:`Ver todo ${name}`}</Link>
+    <div
+      className={`${handles['desktop-submenu__container']} dn absolute w-100`}
+    >
+      <section
+        className={`${handles['desktop-submenu__content']} absolute w-100`}
+      >
+        <div className={`${handles['desktop-submenu__content--list']}`}>
+          <Link
+            to={href}
+            className={`${handles['desktop-submenu__link-see-all']} ${
+              highlightTitle ? handles.highlightTitle : ''
+            }`}
+          >
+            {name === 'Marcas' ? `Ver todas las ${name}` : `Ver todo ${name}`}
+          </Link>
 
-        {menuItems?.map(({name, subItems, href}:any)=>{
-          return(
-            <div className={`${handles["desktop-submenu__content--card"]}`}>
-              <Link to={href}>
-                <p className={`${handles["desktop-submenu__subcategory--title"]}`}>{name}</p>
-              </Link>
-             <SubSubMenu subItems={subItems}/>
-            </div>
-          )
-        })}
-
-      </div>
-      <div className={`${handles["banner-container"]}`}>
-        <a className={`${handles["banner-content"]}`} href={menuBanner?.link}>
-        <img src={menuBanner?.image} alt="Banner image" />
-        <p className={`${handles["banner-text"]}`}>{menuBanner?.text}</p>
-        </a>
-      </div>
-        
-    </section>
+          {menuItems?.map(({ _name, subItems, _href }: any, i: number) => {
+            return (
+              <div
+                key={`menuItems_${i}`}
+                className={`${handles['desktop-submenu__content--card']}`}
+              >
+                <Link to={_href}>
+                  <p
+                    className={`${handles['desktop-submenu__subcategory--title']}`}
+                  >
+                    {_name}
+                  </p>
+                </Link>
+                <SubSubMenu subItems={subItems} />
+              </div>
+            )
+          })}
+        </div>
+        <div className={`${handles['banner-container']}`}>
+          <a className={`${handles['banner-content']}`} href={menuBanner?.link}>
+            <img src={menuBanner?.image} alt="Banner" />
+            <p className={`${handles['banner-text']}`}>{menuBanner?.text}</p>
+          </a>
+        </div>
+      </section>
     </div>
   )
 }
-
 
 export default SubMenu

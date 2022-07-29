@@ -22,14 +22,25 @@ const HighlightContent = ({
 }: HighlightContentProps) => {
   const handles = useCssHandles(CSS_HANDLES)
 
-
   return items ? (
-    items.length>0 
-    ?
-    <section className={`${handles.highlightContent} ${classes || ''}`}>
-      {sliderMode ? (
-        <SliderLayout {...sliderProps}>
-          {items.map((item, index) => (
+    items.length > 0 ? (
+      <section className={`${handles.highlightContent} ${classes || ''}`}>
+        {sliderMode ? (
+          <SliderLayout {...sliderProps}>
+            {items.map((item, index) => (
+              <CardLayout
+                image={item.image}
+                secundaryImage={item.secundaryImage}
+                text={item.text}
+                link={item.link}
+                backgroundColor={item.backgroundColor}
+                isHighlight={item.isHighlight}
+                key={`highlightContent-${index}`}
+              />
+            ))}
+          </SliderLayout>
+        ) : (
+          items.map((item, index) => (
             <CardLayout
               image={item.image}
               secundaryImage={item.secundaryImage}
@@ -39,25 +50,10 @@ const HighlightContent = ({
               isHighlight={item.isHighlight}
               key={`highlightContent-${index}`}
             />
-          ))}
-        </SliderLayout>
-      ) : (
-        items.map((item, index) => (
-          <CardLayout
-            image={item.image}
-            secundaryImage={item.secundaryImage}
-            text={item.text}
-            link={item.link}
-            backgroundColor={item.backgroundColor}
-            isHighlight={item.isHighlight}
-            key={`highlightContent-${index}`}
-          />
-        ))
-      )}
-    </section>
-    :
-    null
-    
+          ))
+        )}
+      </section>
+    ) : null
   ) : null
 }
 
@@ -98,12 +94,12 @@ HighlightContent.schema = {
             type: 'string',
             widget: {
               'ui:widget': 'color',
-            }
+            },
           },
           isHighlight: {
             title: 'Es un ítem resaltado',
-            type: 'boolean'
-          }
+            type: 'boolean',
+          },
         },
       },
     },

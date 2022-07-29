@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
+
 interface ContainerSectionProps {
   classes?: string
   title?: string
@@ -30,11 +31,12 @@ const DangetHTML: StorefrontFunctionComponent<ContainerSectionProps> = ({
           __html: minify(content),
         }}
       />
-      <script src={`${fileJS}`}></script>
+      <script src={`${fileJS}`} />
       <link rel="stylesheet" href={`${fileCSS}`} />
     </>
   ) : null
 }
+
 DangetHTML.schema = {
   title: 'HTML Content',
   type: 'object',
@@ -59,7 +61,7 @@ DangetHTML.schema = {
       description: 'Archivo JS',
       widget: {
         'ui:widget': 'file',
-      }
+      },
     },
     fileCSS: {
       title: 'File CSS',
@@ -67,8 +69,8 @@ DangetHTML.schema = {
       description: 'Archivo CSS',
       widget: {
         'ui:widget': 'file',
-      }
-    }
+      },
+    },
   },
 }
 export default DangetHTML

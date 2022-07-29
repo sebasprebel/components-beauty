@@ -3,50 +3,50 @@
     "component": "ContainerLayout",
     "composition": "children"
   },
-  
+
   "card-layout": {
     "component": "CardLayout"
   },
-  
+
   "highlight-content": {
     "component": "HighlightContent"
   },
-  
+
   "responsive-image": {
     "component": "ResponsiveImage"
   },
-  "infinite-slide":{
+  "infinite-slide": {
     "component": "InfiniteSlide"
   },
-  "copy-info":{
+  "copy-info": {
     "component": "Copyright"
   },
-  "drop-down-container":{
+  "drop-down-container": {
     "component": "DropDownContainer",
     "composition": "children"
   },
-  "custom-menu-desktop":{
+  "custom-menu-desktop": {
     "component": "DesktopMenu"
   },
-  "custom-menu-mobile":{
+  "custom-menu-mobile": {
     "component": "MobileMenu"
   },
-  "product-spec-use":{
+  "product-spec-use": {
     "component": "ProductSpecUse"
   },
-  "sku-color":{
+  "sku-color": {
     "component": "SKUColor"
   },
-  "search-info-custom":{
+  "search-info-custom": {
     "component": "SearchInfo"
   },
-  "seller-custom":{
+  "seller-custom": {
     "component": "SellerInfo"
   },
-  "seller-custom-cart":{
+  "seller-custom-cart": {
     "component": "SellerInfoCart"
   },
-  "our-brands-custom":{
+  "our-brands-custom": {
     "component": "OurBrands"
   },
   "danger-html": {
@@ -60,5 +60,8 @@
   },
   "slider-banner-with-html": {
     "component": "SliderBannerWithHTML"
+  },
+  "product-image-custom": {
+    "component": "ProductImage"
   }
 }
