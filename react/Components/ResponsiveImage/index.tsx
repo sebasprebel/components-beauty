@@ -50,7 +50,10 @@ const ResponsiveImage = ({
   const ref = useRef<HTMLDivElement>(null)
 
   const getWidth = React.useMemo(() => {
-    return ref.current?.clientWidth ?? breakpoint.replace(/px|rem|pt/, '')
+    return (
+      Math.round(ref.current?.clientWidth ?? 0) ??
+      breakpoint.replace(/px|rem|pt/, '')
+    )
   }, [ref, breakpoint])
 
   const PictureElement = () => {
